@@ -1001,20 +1001,21 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
     const distText = CAMERA_TYPES
       .filter(t => state.dist[t.id] > 0)
       .map(t => `- ${t.label}: ${state.dist[t.id]}`)
-      .join('%0D%0A');
+      .join('\n');
 
     const total = state.kit.price + extrasTotal();
 
     const subject = encodeURIComponent(`Solicitud de cotización — ${state.kit.label}`);
-    const body =
-      `Hola SATI, quiero solicitar una cotización con estos datos:%0D%0A%0D%0A` +
-      `Kit: ${state.kit.label}%0D%0A` +
-      `Distribución de cámaras:%0D%0A${distText}%0D%0A` +
-      `Tipo de propiedad: ${state.property}%0D%0A` +
-      `Tamaño: ${state.size}%0D%0A` +
-      `Extras: ${extrasSummaryText()}%0D%0A` +
-      `Total estimado: ${money(total)}%0D%0A%0D%0A` +
+    const bodyRaw =
+      `Hola SATI, quiero solicitar una cotización con estos datos:\n\n` +
+      `Kit: ${state.kit.label}\n` +
+      `Distribución de cámaras:\n${distText}\n` +
+      `Tipo de propiedad: ${state.property}\n` +
+      `Tamaño: ${state.size}\n` +
+      `Extras: ${extrasSummaryText()}\n` +
+      `Total estimado: ${money(total)}\n\n` +
       `Quedo atento/a a la confirmación.`;
+    const body = encodeURIComponent(bodyRaw);
 
     window.location.href = `mailto:${DEST_EMAIL}?subject=${subject}&body=${body}`;
   });
