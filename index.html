@@ -312,6 +312,87 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
     .player{transition:none;}
     .player.playing .eq i{animation:none;height:9px;}
   }
+
+  /* ---------- cotizador ---------- */
+  #cotizador{background:linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.80) 100%);border-top:1px solid var(--line);}
+  .sc-card{
+    background:rgba(7,15,11,0.86);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:32px;
+    max-width:620px;
+  }
+  .sc-progress{display:flex;gap:6px;margin-bottom:28px;max-width:620px;}
+  .sc-progress span{flex:1;height:3px;border-radius:2px;background:var(--line);transition:background .3s ease;}
+  .sc-progress span.active{background:var(--cyan);}
+
+  .sc-step{display:none;}
+  .sc-step.active{display:block;animation:sc-fade .25s ease;}
+  @keyframes sc-fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+
+  .sc-step-label{font-family:var(--font-mono);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);margin:0 0 6px;}
+  .sc-step h3{font-family:var(--font-display);font-size:1.2rem;margin:0 0 6px;font-weight:700;}
+  .sc-step .sc-help{color:var(--muted);font-size:0.92rem;margin:0 0 22px;line-height:1.6;}
+
+  .sc-options{display:grid;gap:10px;}
+  .sc-option{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:14px 16px;border:1px solid var(--line);border-radius:10px;
+    background:var(--panel-2);cursor:pointer;transition:border-color .15s ease, background .15s ease;
+  }
+  .sc-option:hover{border-color:var(--cyan);}
+  .sc-option.selected{border-color:var(--cyan);background:rgba(34,197,94,0.10);}
+  .sc-option input{display:none;}
+  .sc-option-name{font-weight:600;font-size:0.95rem;}
+  .sc-option-price{font-family:var(--font-mono);color:var(--cyan);font-weight:600;font-size:0.92rem;white-space:nowrap;}
+
+  .sc-dist-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);}
+  .sc-dist-row:last-of-type{border-bottom:none;}
+  .sc-dist-name{font-size:0.92rem;}
+  .sc-dist-controls{display:flex;align-items:center;gap:10px;}
+  .sc-stepper-btn{
+    width:30px;height:30px;border-radius:8px;border:1px solid var(--line);
+    background:var(--panel-2);color:var(--ink-text);font-size:1.1rem;line-height:1;cursor:pointer;
+  }
+  .sc-stepper-btn:hover{border-color:var(--cyan);}
+  .sc-dist-value{min-width:24px;text-align:center;font-family:var(--font-mono);font-weight:600;}
+  .sc-dist-total{margin-top:14px;font-size:0.85rem;color:var(--muted);}
+  .sc-dist-total strong{color:var(--ink-text);}
+  .sc-dist-total.sc-warn{color:#f2704d;}
+
+  .sc-nav{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .sc-btn{
+    appearance:none;border:none;border-radius:8px;padding:11px 20px;
+    font-family:var(--font-body);font-size:0.92rem;font-weight:600;cursor:pointer;
+    transition:opacity .15s ease, transform .05s ease;
+  }
+  .sc-btn:active{transform:scale(0.98);}
+  .sc-btn-primary{background:linear-gradient(135deg,var(--cyan),var(--sky));color:#02150a;margin-left:auto;}
+  .sc-btn-primary:disabled{opacity:0.4;cursor:not-allowed;}
+  .sc-btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--line);}
+  .sc-btn-ghost:hover{color:var(--ink-text);border-color:var(--cyan);}
+
+  .sc-summary{display:grid;gap:10px;margin-bottom:20px;}
+  .sc-summary-row{display:flex;justify-content:space-between;font-size:0.92rem;padding-bottom:10px;border-bottom:1px solid var(--line);}
+  .sc-summary-row span:first-child{color:var(--muted);}
+  .sc-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:6px;}
+  .sc-total span:first-child{font-size:1rem;font-weight:600;}
+  .sc-total span:last-child{font-family:var(--font-mono);font-size:1.7rem;font-weight:700;color:var(--cyan);}
+
+  .sc-final-note{font-size:0.85rem;color:var(--muted);margin:16px 0 0;line-height:1.5;}
+
+  .sc-extra-row{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:14px 16px;border:1px solid var(--line);border-radius:10px;
+    background:var(--panel-2);margin-bottom:10px;cursor:pointer;
+  }
+  .sc-extra-row:hover{border-color:var(--cyan);}
+  .sc-extra-row.selected{border-color:var(--cyan);background:rgba(34,197,94,0.10);}
+  .sc-extra-info{display:flex;align-items:center;gap:10px;}
+  .sc-extra-info input[type="checkbox"]{width:18px;height:18px;accent-color:var(--cyan);cursor:pointer;}
+  .sc-extra-name{font-weight:600;font-size:0.95rem;}
+  .sc-extra-price{font-family:var(--font-mono);color:var(--cyan);font-weight:600;font-size:0.92rem;white-space:nowrap;}
+  .sc-extra-row.sc-extra-qty{cursor:default;}
 </style>
 
 <!-- ============================================================ FONDO -->
@@ -330,6 +411,7 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
     </a>
     <div class="nav-links">
       <a href="#servicios">Servicios</a>
+      <a href="#cotizador">Cotizador</a>
       <a href="#sobre-sati">Sobre SATI</a>
       <a href="#contacto">Contacto</a>
     </div>
@@ -465,6 +547,99 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
   </div>
 </section>
 
+<!-- ============================================================ COTIZADOR -->
+<section id="cotizador">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">Cotizador</span>
+      <h2>Cotiza tu instalación de cámaras.</h2>
+      <p>Sigue los pasos para obtener un presupuesto estimado. Un técnico de SATI confirmará el detalle final por correo.</p>
+    </div>
+
+    <div class="sc-progress" id="scProgress"></div>
+
+    <div class="sc-card">
+
+      <!-- Paso 1: Kit -->
+      <div class="sc-step active" data-step="1">
+        <p class="sc-step-label">Paso 1 de 6</p>
+        <h3>Elige el kit de cámaras</h3>
+        <p class="sc-help">Selecciona el kit que mejor se adapte a la cantidad de puntos que necesitas cubrir.</p>
+        <div class="sc-options" id="kitOptions"></div>
+        <div class="sc-nav">
+          <button class="sc-btn sc-btn-primary" id="nextBtn1" disabled>Siguiente</button>
+        </div>
+      </div>
+
+      <!-- Paso 2: Distribución -->
+      <div class="sc-step" data-step="2">
+        <p class="sc-step-label">Paso 2 de 6</p>
+        <h3>Distribuye tus cámaras</h3>
+        <p class="sc-help">Asigna el total de cámaras del kit entre estos tipos. Debes distribuir exactamente la cantidad indicada.</p>
+        <div id="distRows"></div>
+        <p class="sc-dist-total" id="distTotalLabel"></p>
+        <div class="sc-nav">
+          <button class="sc-btn sc-btn-ghost" data-back>Anterior</button>
+          <button class="sc-btn sc-btn-primary" id="nextBtn2" disabled>Siguiente</button>
+        </div>
+      </div>
+
+      <!-- Paso 3: Tipo de propiedad -->
+      <div class="sc-step" data-step="3">
+        <p class="sc-step-label">Paso 3 de 6</p>
+        <h3>Tipo de propiedad</h3>
+        <p class="sc-help">Esto nos ayuda a preparar la visita técnica adecuada.</p>
+        <div class="sc-options" id="propertyOptions"></div>
+        <div class="sc-nav">
+          <button class="sc-btn sc-btn-ghost" data-back>Anterior</button>
+          <button class="sc-btn sc-btn-primary" id="nextBtn3" disabled>Siguiente</button>
+        </div>
+      </div>
+
+      <!-- Paso 4: Tamaño -->
+      <div class="sc-step" data-step="4">
+        <p class="sc-step-label">Paso 4 de 6</p>
+        <h3>Tamaño de la propiedad</h3>
+        <p class="sc-help">Una referencia aproximada es suficiente.</p>
+        <div class="sc-options" id="sizeOptions"></div>
+        <div class="sc-nav">
+          <button class="sc-btn sc-btn-ghost" data-back>Anterior</button>
+          <button class="sc-btn sc-btn-primary" id="nextBtn4" disabled>Siguiente</button>
+        </div>
+      </div>
+
+      <!-- Paso 5: Extras opcionales -->
+      <div class="sc-step" data-step="5">
+        <p class="sc-step-label">Paso 5 de 6</p>
+        <h3>Extras opcionales</h3>
+        <p class="sc-help">Agrega equipamiento adicional a tu cotización si lo necesitas. Es opcional.</p>
+        <div id="extrasRows"></div>
+        <div class="sc-nav">
+          <button class="sc-btn sc-btn-ghost" data-back>Anterior</button>
+          <button class="sc-btn sc-btn-primary" id="nextBtn5">Calcular</button>
+        </div>
+      </div>
+
+      <!-- Paso 6: Resultado -->
+      <div class="sc-step" data-step="6">
+        <p class="sc-step-label">Paso 6 de 6</p>
+        <h3>Tu presupuesto estimado</h3>
+        <div class="sc-summary" id="summaryBox"></div>
+        <div class="sc-total">
+          <span>Total estimado</span>
+          <span id="totalValue">$0</span>
+        </div>
+        <p class="sc-final-note">Este valor es referencial e incluye instalación básica del kit. El tamaño de la propiedad y el tipo de cableado pueden ajustar el valor final, que se confirma en la visita técnica.</p>
+        <div class="sc-nav">
+          <button class="sc-btn sc-btn-ghost" data-back>Anterior</button>
+          <button class="sc-btn sc-btn-primary" id="sendBtn">Enviar solicitud</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ============================================================ CONTACTO -->
 <section id="contacto">
   <div class="wrap contact-layout">
@@ -564,6 +739,289 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
     </g>
   </defs>
 </svg>
+
+<script>
+/* ---------- cotizador de instalación de cámaras ---------- */
+(function(){
+  // Para agregar más kits (6, 10, 12 cámaras) solo suma un objeto aquí con su precio.
+  const KITS = [
+    { id: 'k4',  label: '4 cámaras + instalación',  qty: 4,  price: 500000 },
+    { id: 'k8',  label: '8 cámaras + instalación',  qty: 8,  price: 1000000 },
+    { id: 'k16', label: '16 cámaras + instalación', qty: 16, price: 1500000 }
+  ];
+
+  const CAMERA_TYPES = [
+    { id: 'ir',    label: 'Visión infrarroja (blanco y negro)' },
+    { id: 'full',  label: 'Visión full color (día y noche)' },
+    { id: 'audio', label: 'Audio' },
+    { id: 'audioFull', label: 'Audio Full Color' }
+  ];
+
+  const PROPERTY_TYPES = ['Residencial', 'Comercial'];
+  const SIZES = ['Hasta 100 m²', '100–200 m²', 'Más de 200 m²'];
+
+  // Extras opcionales, se suman aparte del precio del kit.
+  const EXTRAS = [
+    { id: 'ups',  label: 'UPS',           price: 100000, kind: 'checkbox' },
+    { id: 'rack', label: 'Rack 4U',       price: 100000, kind: 'checkbox' },
+    { id: 'ptz',  label: 'Cámara IP PTZ', price: 100000, kind: 'quantity' }
+  ];
+
+  const DEST_EMAIL = 'chilecker@gmail.com';
+
+  let state = {
+    kit: null,
+    dist: {},
+    property: null,
+    size: null,
+    extras: { ups: false, rack: false, ptzQty: 0 }
+  };
+
+  const root = document.getElementById('cotizador');
+  if(!root) return;
+  const progressEl = document.getElementById('scProgress');
+  const steps = root.querySelectorAll('.sc-step');
+  const money = n => '$' + n.toLocaleString('es-CL');
+
+  function extrasTotal(){
+    let total = 0;
+    if(state.extras.ups) total += EXTRAS.find(e=>e.id==='ups').price;
+    if(state.extras.rack) total += EXTRAS.find(e=>e.id==='rack').price;
+    total += state.extras.ptzQty * EXTRAS.find(e=>e.id==='ptz').price;
+    return total;
+  }
+
+  function setProgress(stepNum){
+    progressEl.innerHTML = '';
+    for(let i=1;i<=6;i++){
+      const s = document.createElement('span');
+      if(i<=stepNum) s.classList.add('active');
+      progressEl.appendChild(s);
+    }
+  }
+
+  function goTo(stepNum){
+    steps.forEach(s => s.classList.toggle('active', Number(s.dataset.step) === stepNum));
+    setProgress(stepNum);
+    if(stepNum === 2) renderDist();
+    if(stepNum === 5) renderExtras();
+    if(stepNum === 6) renderSummary();
+  }
+
+  root.querySelectorAll('[data-back]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const current = Number(btn.closest('.sc-step').dataset.step);
+      goTo(current - 1);
+    });
+  });
+
+  // Paso 1: kits
+  const kitOptionsEl = document.getElementById('kitOptions');
+  KITS.forEach(kit=>{
+    const label = document.createElement('label');
+    label.className = 'sc-option';
+    label.innerHTML = `
+      <input type="radio" name="kit" value="${kit.id}">
+      <span class="sc-option-name">${kit.label}</span>
+      <span class="sc-option-price">${money(kit.price)}</span>
+    `;
+    label.addEventListener('click', ()=>{
+      state.kit = kit;
+      state.dist = {};
+      kitOptionsEl.querySelectorAll('.sc-option').forEach(o=>o.classList.remove('selected'));
+      label.classList.add('selected');
+      document.getElementById('nextBtn1').disabled = false;
+    });
+    kitOptionsEl.appendChild(label);
+  });
+  document.getElementById('nextBtn1').addEventListener('click', ()=> goTo(2));
+
+  // Paso 2: distribución
+  const distRowsEl = document.getElementById('distRows');
+  const distTotalLabel = document.getElementById('distTotalLabel');
+
+  function renderDist(){
+    distRowsEl.innerHTML = '';
+    CAMERA_TYPES.forEach(type=>{
+      if(state.dist[type.id] === undefined) state.dist[type.id] = 0;
+      const row = document.createElement('div');
+      row.className = 'sc-dist-row';
+      row.innerHTML = `
+        <span class="sc-dist-name">${type.label}</span>
+        <div class="sc-dist-controls">
+          <button type="button" class="sc-stepper-btn" data-action="minus" data-type="${type.id}">−</button>
+          <span class="sc-dist-value" id="distVal-${type.id}">0</span>
+          <button type="button" class="sc-stepper-btn" data-action="plus" data-type="${type.id}">+</button>
+        </div>
+      `;
+      distRowsEl.appendChild(row);
+    });
+    distRowsEl.querySelectorAll('.sc-stepper-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const type = btn.dataset.type;
+        const delta = btn.dataset.action === 'plus' ? 1 : -1;
+        const currentTotal = Object.values(state.dist).reduce((a,b)=>a+b,0);
+        const next = state.dist[type] + delta;
+        if(next < 0) return;
+        if(delta === 1 && currentTotal >= state.kit.qty) return;
+        state.dist[type] = next;
+        document.getElementById('distVal-' + type).textContent = next;
+        updateDistTotal();
+      });
+    });
+    updateDistTotal();
+  }
+
+  function updateDistTotal(){
+    const total = Object.values(state.dist).reduce((a,b)=>a+b,0);
+    const target = state.kit.qty;
+    distTotalLabel.innerHTML = `Distribuidas: <strong>${total}</strong> de ${target}`;
+    const ok = total === target;
+    distTotalLabel.classList.toggle('sc-warn', !ok);
+    document.getElementById('nextBtn2').disabled = !ok;
+  }
+  document.getElementById('nextBtn2').addEventListener('click', ()=> goTo(3));
+
+  // Paso 3: tipo de propiedad
+  const propertyOptionsEl = document.getElementById('propertyOptions');
+  PROPERTY_TYPES.forEach(p=>{
+    const label = document.createElement('label');
+    label.className = 'sc-option';
+    label.innerHTML = `<input type="radio" name="property" value="${p}"><span class="sc-option-name">${p}</span>`;
+    label.addEventListener('click', ()=>{
+      state.property = p;
+      propertyOptionsEl.querySelectorAll('.sc-option').forEach(o=>o.classList.remove('selected'));
+      label.classList.add('selected');
+      document.getElementById('nextBtn3').disabled = false;
+    });
+    propertyOptionsEl.appendChild(label);
+  });
+  document.getElementById('nextBtn3').addEventListener('click', ()=> goTo(4));
+
+  // Paso 4: tamaño
+  const sizeOptionsEl = document.getElementById('sizeOptions');
+  SIZES.forEach(sz=>{
+    const label = document.createElement('label');
+    label.className = 'sc-option';
+    label.innerHTML = `<input type="radio" name="size" value="${sz}"><span class="sc-option-name">${sz}</span>`;
+    label.addEventListener('click', ()=>{
+      state.size = sz;
+      sizeOptionsEl.querySelectorAll('.sc-option').forEach(o=>o.classList.remove('selected'));
+      label.classList.add('selected');
+      document.getElementById('nextBtn4').disabled = false;
+    });
+    sizeOptionsEl.appendChild(label);
+  });
+  document.getElementById('nextBtn4').addEventListener('click', ()=> goTo(5));
+
+  // Paso 5: extras opcionales
+  const extrasRowsEl = document.getElementById('extrasRows');
+
+  function renderExtras(){
+    extrasRowsEl.innerHTML = '';
+
+    ['ups','rack'].forEach(id=>{
+      const extra = EXTRAS.find(e=>e.id===id);
+      const row = document.createElement('label');
+      row.className = 'sc-extra-row';
+      row.classList.toggle('selected', !!state.extras[id]);
+      row.innerHTML = `
+        <span class="sc-extra-info">
+          <input type="checkbox" ${state.extras[id] ? 'checked' : ''}>
+          <span class="sc-extra-name">${extra.label}</span>
+        </span>
+        <span class="sc-extra-price">${money(extra.price)}</span>
+      `;
+      row.querySelector('input').addEventListener('change', (e)=>{
+        state.extras[id] = e.target.checked;
+        row.classList.toggle('selected', e.target.checked);
+      });
+      extrasRowsEl.appendChild(row);
+    });
+
+    const ptz = EXTRAS.find(e=>e.id==='ptz');
+    const ptzRow = document.createElement('div');
+    ptzRow.className = 'sc-extra-row sc-extra-qty';
+    ptzRow.innerHTML = `
+      <span class="sc-extra-info">
+        <span class="sc-extra-name">${ptz.label}</span>
+      </span>
+      <div class="sc-extra-info">
+        <span class="sc-extra-price">${money(ptz.price)} c/u</span>
+        <div class="sc-dist-controls">
+          <button type="button" class="sc-stepper-btn" data-ptz="minus">−</button>
+          <span class="sc-dist-value" id="ptzQtyLabel">${state.extras.ptzQty}</span>
+          <button type="button" class="sc-stepper-btn" data-ptz="plus">+</button>
+        </div>
+      </div>
+    `;
+    ptzRow.querySelector('[data-ptz="minus"]').addEventListener('click', ()=>{
+      if(state.extras.ptzQty > 0) state.extras.ptzQty--;
+      document.getElementById('ptzQtyLabel').textContent = state.extras.ptzQty;
+    });
+    ptzRow.querySelector('[data-ptz="plus"]').addEventListener('click', ()=>{
+      state.extras.ptzQty++;
+      document.getElementById('ptzQtyLabel').textContent = state.extras.ptzQty;
+    });
+    extrasRowsEl.appendChild(ptzRow);
+  }
+  document.getElementById('nextBtn5').addEventListener('click', ()=> goTo(6));
+
+  // Paso 6: resumen y envío
+  const summaryBox = document.getElementById('summaryBox');
+  const totalValue = document.getElementById('totalValue');
+
+  function extrasSummaryText(){
+    const parts = [];
+    if(state.extras.ups) parts.push(`UPS: ${money(100000)}`);
+    if(state.extras.rack) parts.push(`Rack 4U: ${money(100000)}`);
+    if(state.extras.ptzQty > 0) parts.push(`Cámara IP PTZ x${state.extras.ptzQty}: ${money(state.extras.ptzQty * 100000)}`);
+    return parts.length ? parts.join(' · ') : 'Sin extras';
+  }
+
+  function renderSummary(){
+    const distText = CAMERA_TYPES
+      .filter(t => state.dist[t.id] > 0)
+      .map(t => `${t.label}: ${state.dist[t.id]}`)
+      .join(' · ') || '—';
+
+    const total = state.kit.price + extrasTotal();
+
+    summaryBox.innerHTML = `
+      <div class="sc-summary-row"><span>Kit seleccionado</span><span>${state.kit.label}</span></div>
+      <div class="sc-summary-row"><span>Distribución</span><span>${distText}</span></div>
+      <div class="sc-summary-row"><span>Tipo de propiedad</span><span>${state.property}</span></div>
+      <div class="sc-summary-row"><span>Tamaño</span><span>${state.size}</span></div>
+      <div class="sc-summary-row"><span>Extras</span><span>${extrasSummaryText()}</span></div>
+    `;
+    totalValue.textContent = money(total);
+  }
+
+  document.getElementById('sendBtn').addEventListener('click', ()=>{
+    const distText = CAMERA_TYPES
+      .filter(t => state.dist[t.id] > 0)
+      .map(t => `- ${t.label}: ${state.dist[t.id]}`)
+      .join('%0D%0A');
+
+    const total = state.kit.price + extrasTotal();
+
+    const subject = encodeURIComponent(`Solicitud de cotización — ${state.kit.label}`);
+    const body =
+      `Hola SATI, quiero solicitar una cotización con estos datos:%0D%0A%0D%0A` +
+      `Kit: ${state.kit.label}%0D%0A` +
+      `Distribución de cámaras:%0D%0A${distText}%0D%0A` +
+      `Tipo de propiedad: ${state.property}%0D%0A` +
+      `Tamaño: ${state.size}%0D%0A` +
+      `Extras: ${extrasSummaryText()}%0D%0A` +
+      `Total estimado: ${money(total)}%0D%0A%0D%0A` +
+      `Quedo atento/a a la confirmación.`;
+
+    window.location.href = `mailto:${DEST_EMAIL}?subject=${subject}&body=${body}`;
+  });
+
+  setProgress(1);
+})();
+</script>
 
 <script>
 /* ---------- música de fondo (stream en vivo de YouTube) ---------- */
