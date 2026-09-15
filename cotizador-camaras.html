@@ -316,6 +316,9 @@
         <button class="sc-btn sc-btn-ghost" data-back>Anterior</button>
         <button class="sc-btn sc-btn-primary" id="sendBtn">Enviar solicitud</button>
       </div>
+      <p class="sc-final-note" style="text-align:right;margin-top:10px;">
+        <a id="mailtoFallback" href="#" style="color:var(--accent);text-decoration:underline;">¿Prefieres tu propio programa de correo?</a>
+      </p>
     </div>
 
   </div>
@@ -581,7 +584,7 @@
     totalValue.textContent = money(total);
   }
 
-  document.getElementById('sendBtn').addEventListener('click', ()=>{
+  function buildMessage(){
     const distText = CAMERA_TYPES
       .filter(t => state.dist[t.id] > 0)
       .map(t => `- ${t.label}: ${state.dist[t.id]}`)
@@ -589,7 +592,7 @@
 
     const total = state.kit.price + extrasTotal();
 
-    const subject = encodeURIComponent(`Solicitud de cotización — ${state.kit.label}`);
+    const subjectRaw = `Solicitud de cotización — ${state.kit.label}`;
     const bodyRaw =
       `Hola SATI, quiero solicitar una cotización con estos datos:\n\n` +
       `Kit: ${state.kit.label}\n` +
@@ -599,6 +602,25 @@
       `Extras: ${extrasSummaryText()}\n` +
       `Total estimado: ${money(total)}\n\n` +
       `Quedo atento/a a la confirmación.`;
+
+    return { subjectRaw, bodyRaw };
+  }
+
+  document.getElementById('sendBtn').addEventListener('click', ()=>{
+    const { subjectRaw, bodyRaw } = buildMessage();
+    const subject = encodeURIComponent(subjectRaw);
+    const body = encodeURIComponent(bodyRaw);
+
+    // Abre el compositor de Gmail en una pestaña nueva: funciona sin depender
+    // de que el visitante tenga un programa de correo configurado en su equipo.
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${DEST_EMAIL}&su=${subject}&body=${body}`;
+    window.open(gmailUrl, '_blank', 'noopener');
+  });
+
+  document.getElementById('mailtoFallback').addEventListener('click', (e)=>{
+    e.preventDefault();
+    const { subjectRaw, bodyRaw } = buildMessage();
+    const subject = encodeURIComponent(subjectRaw);
     const body = encodeURIComponent(bodyRaw);
 
     window.location.href = `mailto:${DEST_EMAIL}?subject=${subject}&body=${body}`;
