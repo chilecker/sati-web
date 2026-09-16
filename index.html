@@ -393,6 +393,41 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
   .sc-extra-name{font-weight:600;font-size:0.95rem;}
   .sc-extra-price{font-family:var(--font-mono);color:var(--cyan);font-weight:600;font-size:0.92rem;white-space:nowrap;}
   .sc-extra-row.sc-extra-qty{cursor:default;}
+
+  /* ---------- nos prefieren (logos de clientes) ---------- */
+  #clientes .section-head{margin-bottom:36px;}
+  .clientes-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    gap:28px;
+  }
+  .cliente-logo{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:180px;
+    height:150px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px;
+    filter:grayscale(100%);
+    opacity:0.75;
+    transition:filter .25s ease, opacity .25s ease, border-color .25s ease, transform .2s ease;
+  }
+  .cliente-logo:hover{
+    filter:grayscale(0%);
+    opacity:1;
+    border-color:var(--cyan);
+    transform:translateY(-3px);
+  }
+  .cliente-logo img{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+  }
 </style>
 
 <!-- ============================================================ FONDO -->
@@ -639,6 +674,23 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
         </p>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ NOS PREFIEREN -->
+<section id="clientes">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">Confianza</span>
+      <h2>Nos prefieren.</h2>
+      <p>Negocios que ya confían en SATI para su infraestructura tecnológica.</p>
+    </div>
+
+    <div class="clientes-grid">
+      <div class="cliente-logo"><img src="assets/clientes/flama.png" alt="Flama Pizza & Bar"></div>
+      <div class="cliente-logo"><img src="assets/clientes/subterraneo.png" alt="Subterraneo"></div>
+      <div class="cliente-logo"><img src="assets/clientes/vittamina.png" alt="Vittamina Bar Restaurant"></div>
     </div>
   </div>
 </section>
