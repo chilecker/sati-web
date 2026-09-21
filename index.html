@@ -108,7 +108,8 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ciberseguridad y cumplimiento", "description": "Auditorías, respuesta a incidentes y cumplimiento de las leyes 21.663 y 21.719." } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cloud y soporte TI", "description": "Migración y administración en Microsoft Azure y 365, mesa de ayuda y soporte continuo." } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cámaras y videovigilancia", "description": "Instalación y configuración de sistemas DVR/NVR con reconocimiento facial." } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Monitoreo y disponibilidad", "description": "Observabilidad y respuesta temprana ante incidentes con disciplina AIOps." } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Monitoreo y disponibilidad", "description": "Observabilidad y respuesta temprana ante incidentes con disciplina AIOps." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Internet rural compartido", "description": "Red administrada sobre Starlink para comunidades rurales: distribución inalámbrica, red aislada y velocidad asignada por hogar." } }
     ]
   }
 }
@@ -567,6 +568,7 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
     </a>
     <div class="nav-links">
       <a href="#servicios">Servicios</a>
+      <a href="#rural">Internet rural</a>
       <a href="#asistente">Asistente IA</a>
       <a href="#cotizador">Cotizador</a>
       <a href="#cumplimiento">Ley 21.719</a>
@@ -674,6 +676,245 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
     </div>
   </div>
 </section>
+
+<!-- ============================================================ INTERNET RURAL -->
+<style>
+  .nav-links{gap:24px;}
+  #rural{border-top:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.55) 100%);}
+  .rur-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:64px;}
+  @media (max-width:920px){.rur-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.rur-grid{grid-template-columns:1fr;}}
+  .rur-card{background:rgba(7,15,11,0.86);padding:28px 24px;}
+  .rur-card h3{font-family:var(--font-display);font-size:16px;font-weight:600;margin-bottom:9px;}
+  .rur-card p{color:var(--muted);font-size:14px;line-height:1.65;}
+  .rur-card i.ti{font-size:22px;color:var(--cyan);display:block;margin-bottom:14px;font-style:normal;}
+
+  .rur-sub{font-family:var(--font-mono);font-size:12.5px;letter-spacing:2px;text-transform:uppercase;
+    color:var(--cyan);margin-bottom:26px;display:block;}
+  .rur-pasos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;margin-bottom:64px;}
+  .rur-paso{border-left:2px solid rgba(34,197,94,0.35);padding:4px 0 4px 18px;border-radius:0;}
+  .rur-paso b{display:block;font-family:var(--font-mono);font-size:11.5px;letter-spacing:1.6px;
+    color:var(--cyan);margin-bottom:9px;font-weight:500;}
+  .rur-paso h4{font-family:var(--font-display);font-size:15px;font-weight:600;margin-bottom:7px;}
+  .rur-paso p{color:var(--muted);font-size:13.5px;line-height:1.6;}
+
+  .rur-calc{border:1px solid var(--line);border-radius:14px;background:rgba(7,15,11,0.86);overflow:hidden;}
+  .rur-calc-head{padding:22px 26px;border-bottom:1px solid var(--line);background:rgba(13,26,19,0.6);}
+  .rur-calc-head h3{font-family:var(--font-display);font-size:19px;font-weight:700;margin-bottom:6px;}
+  .rur-calc-head p{color:var(--muted);font-size:14px;line-height:1.6;}
+  .rur-campo{padding:22px 26px;border-bottom:1px solid var(--line);display:flex;gap:22px;
+    align-items:center;flex-wrap:wrap;}
+  .rur-campo .lab{flex:1;min-width:210px;}
+  .rur-campo .lab strong{display:block;font-size:15px;font-weight:600;margin-bottom:5px;}
+  .rur-campo .lab span{color:var(--muted);font-size:13px;line-height:1.5;}
+  .rur-opts{display:flex;gap:8px;flex-wrap:wrap;}
+  .rur-opt{font-family:var(--font-body);font-size:13.5px;padding:9px 15px;border-radius:7px;cursor:pointer;
+    background:transparent;border:1px solid var(--line);color:var(--muted);transition:all .15s ease;}
+  .rur-opt:hover{border-color:rgba(34,197,94,0.45);color:var(--ink-text);}
+  .rur-opt.sel{background:var(--cyan);border-color:var(--cyan);color:#02150a;font-weight:600;}
+  .rur-rango{display:flex;align-items:center;gap:14px;min-width:240px;}
+  .rur-rango input{flex:1;accent-color:var(--cyan);}
+  .rur-rango output{font-family:var(--font-mono);font-size:22px;color:var(--ink-text);min-width:26px;text-align:right;}
+
+  .rur-tot{padding:28px 26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:22px;}
+  .rur-tot .caja span{display:block;font-family:var(--font-mono);font-size:11.5px;letter-spacing:1.4px;
+    text-transform:uppercase;color:var(--muted);margin-bottom:9px;}
+  .rur-tot .caja b{font-size:27px;font-weight:700;letter-spacing:-0.5px;color:var(--mint);}
+  .rur-tot .caja em{display:block;font-style:normal;font-size:12.5px;color:var(--muted);margin-top:7px;line-height:1.5;}
+  .rur-pie{padding:0 26px 26px;display:flex;gap:12px;flex-wrap:wrap;}
+
+  .rur-nota{margin-top:26px;font-size:12.5px;color:var(--muted);line-height:1.7;max-width:74ch;}
+  @media (max-width:640px){
+    .rur-campo{padding:18px;}
+    .rur-opts{width:100%;}
+    .rur-opt{flex:1;}
+  }
+</style>
+
+<section id="rural">
+  <div class="wrap">
+
+    <div class="section-head">
+      <span class="section-eyebrow">Conectividad rural</span>
+      <h2>Internet donde no llega la fibra.</h2>
+      <p>Una sola antena Starlink, repartida entre varias casas con red profesional: cada hogar con su
+         propia clave, su propia red aislada y su velocidad garantizada. No es compartir el WiFi del vecino
+         &mdash; es una red administrada, con el mismo est&aacute;ndar que usamos en empresas.
+         Hasta 6 hogares por antena, para que el ancho de banda alcance de verdad.</p>
+    </div>
+
+    <div class="rur-grid">
+      <div class="rur-card">
+        <i class="ti ti-home-2" aria-hidden="true"></i>
+        <h3>Parcelas y condominios</h3>
+        <p>Grupos de hasta 6 casas dispersas que por separado no justifican una antena cada una.</p>
+      </div>
+      <div class="rur-card">
+        <i class="ti ti-plant-2" aria-hidden="true"></i>
+        <h3>Comunidades agr&iacute;colas</h3>
+        <p>Predios y sectores rurales sin cobertura de fibra ni se&ntilde;al m&oacute;vil estable.</p>
+      </div>
+      <div class="rur-card">
+        <i class="ti ti-building-store" aria-hidden="true"></i>
+        <h3>Negocios rurales</h3>
+        <p>Cabañas, camping, packing o bodega que necesitan conexi&oacute;n para su punto de venta.</p>
+      </div>
+      <div class="rur-card">
+        <i class="ti ti-tent" aria-hidden="true"></i>
+        <h3>Faenas temporales</h3>
+        <p>Obras y campamentos que requieren red operativa desde el primer d&iacute;a.</p>
+      </div>
+    </div>
+
+    <span class="rur-sub">C&oacute;mo funciona</span>
+    <div class="rur-pasos">
+      <div class="rur-paso">
+        <b>01</b>
+        <h4>Antena en punto central</h4>
+        <p>Starlink en modo bypass, sin doble NAT, montada donde el cielo est&eacute; despejado.</p>
+      </div>
+      <div class="rur-paso">
+        <b>02</b>
+        <h4>Gateway administrado</h4>
+        <p>Router empresarial con VLAN y control de tr&aacute;fico: el cerebro que reparte y vigila.</p>
+      </div>
+      <div class="rur-paso">
+        <b>03</b>
+        <h4>M&aacute;stil de distribuci&oacute;n</h4>
+        <p>Switch PoE y antena omnidireccional exterior que cubre las casas m&aacute;s cercanas.</p>
+      </div>
+      <div class="rur-paso">
+        <b>04</b>
+        <h4>Enlace a las casas lejanas</h4>
+        <p>Antena direccional para los hogares a mayor distancia, sin zanjas ni cableado.</p>
+      </div>
+      <div class="rur-paso">
+        <b>05</b>
+        <h4>Una red por hogar</h4>
+        <p>Cada casa con su red y clave propias, aislada del resto y con velocidad asignada.</p>
+      </div>
+    </div>
+
+    <div class="rur-calc">
+      <div class="rur-calc-head">
+        <h3>&iquest;Cu&aacute;nto le sale a cada casa?</h3>
+        <p>Ajusta los datos de tu sector y calcula c&oacute;mo se reparte la inversi&oacute;n y el gasto mensual.</p>
+      </div>
+
+      <div class="rur-campo">
+        <div class="lab"><strong>Casas que participan</strong>
+          <span>Hasta 6 hogares por antena, para que a cada uno le llegue velocidad real en hora punta.</span></div>
+        <div class="rur-rango">
+          <input type="range" id="rurCasas" min="3" max="6" step="1" value="6" aria-label="Casas que participan">
+          <output id="rurCasasOut">6</output>
+        </div>
+      </div>
+
+      <div class="rur-campo">
+        <div class="lab"><strong>Distancia al punto m&aacute;s lejano</strong>
+          <span>Define si basta la antena central o hace falta un enlace direccional.</span></div>
+        <div class="rur-opts" id="rurDist">
+          <button type="button" class="rur-opt sel" data-v="250">Hasta 250 m</button>
+          <button type="button" class="rur-opt" data-v="500">Hasta 500 m</button>
+        </div>
+      </div>
+
+      <div class="rur-campo">
+        <div class="lab"><strong>Servicio Starlink</strong>
+          <span>Plan 4X: antena incluida en la inversi&oacute;n y mensualidad repartida entre las casas.</span></div>
+        <div class="rur-opts">
+          <span class="rur-opt sel" style="cursor:default">Plan 4X &middot; $50.000 al mes</span>
+        </div>
+      </div>
+
+      <div class="rur-tot">
+        <div class="caja">
+          <span>Inversi&oacute;n total en equipos</span>
+          <b id="rurTotal">$0</b>
+          <em>Equipos de red m&aacute;s kit Starlink. Se paga una vez.</em>
+        </div>
+        <div class="caja">
+          <span>Aporte inicial por casa</span>
+          <b id="rurPorCasa">$0</b>
+          <em>Dividido en partes iguales entre los hogares.</em>
+        </div>
+        <div class="caja">
+          <span>Mensual por casa</span>
+          <b id="rurMensual">$0</b>
+          <em>Plan Starlink repartido. Sin contratos individuales.</em>
+        </div>
+      </div>
+
+      <div class="rur-pie">
+        <a class="btn btn-primary" id="rurWa" target="_blank" rel="noopener">Agendar visita t&eacute;cnica</a>
+        <a class="btn btn-ghost" id="rurMail" target="_blank" rel="noopener">Pedir propuesta por correo</a>
+      </div>
+    </div>
+
+    <p class="rur-nota">
+      Valores referenciales de equipamiento y plan, sin instalaci&oacute;n ni obras: el terreno, la altura del
+      m&aacute;stil y el trazado se definen en la visita t&eacute;cnica. SATI dise&ntilde;a, instala y administra la red;
+      la contrataci&oacute;n del servicio Starlink y la elecci&oacute;n del plan adecuado para uso compartido queda
+      a nombre de la comunidad, y la revisamos contigo antes de comprar nada.
+    </p>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  var KIT_250 = 1135000;
+  var KIT_500 = 1390000;
+  var KIT_STARLINK = 350000;
+  var PLAN_MENSUAL = 50000;
+
+  var casas = 6, dist = 250, plan = PLAN_MENSUAL;
+  var $ = function(id){ return document.getElementById(id); };
+  if (!$('rurCasas')) return;
+
+  var clp = function(n){ return '$' + Math.round(n).toLocaleString('es-CL'); };
+
+  function pintar(){
+    var total = (dist === 500 ? KIT_500 : KIT_250) + KIT_STARLINK;
+    $('rurTotal').textContent   = clp(total);
+    $('rurPorCasa').textContent = clp(total / casas);
+    $('rurMensual').textContent = clp(plan / casas);
+
+    var msj = 'Hola SATI, quiero internet rural compartido por Starlink.\n\n' +
+              'Casas que participan: ' + casas + '\n' +
+              'Distancia al punto más lejano: hasta ' + dist + ' m\n' +
+              'Servicio Starlink: plan 4X\n' +
+              'Estimación de la web: ' + clp(total) + ' en equipos, ' +
+              clp(total / casas) + ' por casa y ' + clp(plan / casas) + ' mensuales por casa.\n\n' +
+              'Mi sector es: ';
+    $('rurWa').href = 'https://wa.me/56955168533?text=' + encodeURIComponent(msj);
+    $('rurMail').href = 'https://mail.google.com/mail/?view=cm&to=chilecker@gmail.com' +
+      '&su=' + encodeURIComponent('Internet rural compartido - ' + casas + ' casas') +
+      '&body=' + encodeURIComponent(msj);
+  }
+
+  $('rurCasas').addEventListener('input', function(){
+    casas = +this.value;
+    $('rurCasasOut').textContent = casas;
+    pintar();
+  });
+
+  function grupo(id, fn){
+    $(id).addEventListener('click', function(e){
+      var b = e.target.closest('.rur-opt'); if (!b) return;
+      [].forEach.call(this.children, function(x){ x.classList.remove('sel'); });
+      b.classList.add('sel');
+      fn(+b.getAttribute('data-v'));
+      pintar();
+    });
+  }
+  grupo('rurDist', function(v){ dist = v; });
+
+  pintar();
+})();
+</script>
 
 <!-- ============================================================ SOBRE SATI -->
 <section id="sobre-sati">
