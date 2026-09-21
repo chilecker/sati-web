@@ -489,6 +489,7 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
       <a href="#servicios">Servicios</a>
       <a href="#asistente">Asistente IA</a>
       <a href="#cotizador">Cotizador</a>
+      <a href="#cumplimiento">Ley 21.719</a>
       <a href="#sobre-sati">Sobre SATI</a>
       <a href="#contacto">Contacto</a>
     </div>
@@ -719,6 +720,234 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
     </div>
   </div>
 </section>
+
+<!-- ============================================================ LEY 21.719 -->
+<style>
+  #cumplimiento{border-top:1px solid var(--line);}
+  .ley-alerta{
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    border:1px solid rgba(234,179,8,0.35);background:rgba(234,179,8,0.07);
+    border-radius:12px;padding:16px 20px;margin-bottom:36px;
+  }
+  .ley-alerta .ico{font-size:20px;line-height:1;}
+  .ley-alerta p{margin:0;font-size:14.5px;line-height:1.6;color:var(--ink-text);}
+  .ley-alerta b{color:#eab308;}
+  .ley-dias{
+    font-family:var(--font-mono);font-size:12px;letter-spacing:1.6px;text-transform:uppercase;
+    color:#eab308;border:1px solid rgba(234,179,8,0.4);border-radius:6px;padding:6px 12px;white-space:nowrap;
+  }
+
+  .ley-test{border:1px solid var(--line);border-radius:14px;background:rgba(7,15,11,0.86);overflow:hidden;}
+  .ley-q{border-bottom:1px solid var(--line);padding:20px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
+  .ley-q:last-of-type{border-bottom:0;}
+  .ley-q .txt{flex:1;min-width:260px;font-size:15px;line-height:1.55;}
+  .ley-q .txt i{display:block;font-style:normal;font-family:var(--font-mono);font-size:11.5px;
+    letter-spacing:1.4px;color:var(--muted);margin-bottom:7px;}
+  .ley-opts{display:flex;gap:8px;flex:none;}
+  .ley-opt{
+    font-family:var(--font-body);font-size:13.5px;padding:9px 16px;border-radius:7px;cursor:pointer;
+    background:transparent;border:1px solid var(--line);color:var(--muted);transition:all .15s ease;
+  }
+  .ley-opt:hover{border-color:rgba(34,197,94,0.45);color:var(--ink-text);}
+  .ley-opt.sel{background:var(--cyan);border-color:var(--cyan);color:#02150a;font-weight:600;}
+
+  .ley-accion{padding:24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+    background:rgba(13,26,19,0.6);border-top:1px solid var(--line);}
+  .ley-prog{font-family:var(--font-mono);font-size:12.5px;letter-spacing:1.4px;color:var(--muted);}
+  .ley-accion .btn{border:0;cursor:pointer;}
+
+  .ley-res{display:none;margin-top:28px;border:1px solid var(--line);border-radius:14px;padding:32px 28px;background:rgba(7,15,11,0.86);}
+  .ley-res.on{display:block;}
+  .ley-nivel{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .ley-luz{width:16px;height:16px;border-radius:50%;flex:none;}
+  .ley-res h3{font-family:var(--font-display);font-size:23px;font-weight:700;}
+  .ley-res .bajada{color:var(--muted);font-size:15.5px;line-height:1.65;margin:14px 0 24px;max-width:62ch;}
+  .ley-brechas{list-style:none;padding:0;margin:0 0 26px;}
+  .ley-brechas li{position:relative;padding-left:26px;margin-bottom:11px;font-size:14.5px;line-height:1.6;color:var(--ink-text);}
+  .ley-brechas li::before{content:"!";position:absolute;left:0;top:0;width:17px;height:17px;border-radius:50%;
+    background:rgba(234,179,8,0.18);color:#eab308;font-size:11px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);}
+  .ley-brechas li.ok::before{content:"\2713";background:rgba(34,197,94,0.18);color:var(--cyan);}
+  .ley-res-btns{display:flex;gap:12px;flex-wrap:wrap;}
+  .ley-nota{margin-top:30px;font-size:12.5px;color:var(--muted);line-height:1.7;max-width:74ch;}
+
+  @media (max-width:640px){
+    .ley-q{padding:18px;}
+    .ley-opts{width:100%;}
+    .ley-opt{flex:1;padding:10px 8px;}
+  }
+</style>
+
+<section id="cumplimiento">
+  <div class="wrap">
+
+    <div class="section-head">
+      <span class="section-eyebrow">Cumplimiento normativo</span>
+      <h2>&iquest;Tu negocio est&aacute; listo para la Ley 21.719?</h2>
+      <p>La nueva Ley de Protecci&oacute;n de Datos Personales entra en vigencia y crea una agencia con
+         poder de fiscalizaci&oacute;n y multas de hasta 20.000 UTM. Si tienes c&aacute;maras o guardas datos
+         de clientes, te aplica. Responde 8 preguntas y sabr&aacute;s d&oacute;nde est&aacute;s parado.</p>
+    </div>
+
+    <div class="ley-alerta">
+      <span class="ico">&#9888;</span>
+      <p><b>Si tus c&aacute;maras graban personas, ya est&aacute;s tratando datos personales.</b>
+         Y si usan reconocimiento facial, son datos biom&eacute;tricos: la categor&iacute;a m&aacute;s sensible de la ley.</p>
+      <span class="ley-dias" id="leyDias">&nbsp;</span>
+    </div>
+
+    <div class="ley-test" id="leyTest"></div>
+
+    <div class="ley-res" id="leyRes">
+      <div class="ley-nivel">
+        <span class="ley-luz" id="leyLuz"></span>
+        <h3 id="leyTitulo"></h3>
+      </div>
+      <p class="bajada" id="leyBajada"></p>
+      <ul class="ley-brechas" id="leyLista"></ul>
+      <div class="ley-res-btns">
+        <a class="btn btn-primary" id="leyWa" target="_blank" rel="noopener">Enviar mi resultado por WhatsApp</a>
+        <a class="btn btn-ghost" id="leyMail" target="_blank" rel="noopener">Enviarlo por correo</a>
+      </div>
+    </div>
+
+    <p class="ley-nota">
+      Esta autoevaluaci&oacute;n es orientativa y no constituye asesor&iacute;a legal. SATI implementa las
+      <b>medidas t&eacute;cnicas</b> que exige la ley &mdash; retenci&oacute;n y purga de grabaciones, control de accesos,
+      registro de actividades de tratamiento, cifrado, se&ntilde;al&eacute;tica y respuesta ante incidentes &mdash;
+      y trabaja junto al abogado de tu empresa cuando el caso lo requiere.
+    </p>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  var PREGUNTAS = [
+    { t:'¿Tienes cámaras de videovigilancia que graban a clientes, pacientes o personal?',
+      riesgo:'si', brecha:'Tus cámaras graban personas: eres responsable de esos datos ante la ley.' },
+    { t:'¿Alguna de tus cámaras usa reconocimiento facial, conteo de personas o análisis de comportamiento?',
+      riesgo:'si', brecha:'Tratas datos biométricos, la categoría más sensible y exigente de la ley.' },
+    { t:'¿Sabes exactamente cuántos días se guardan tus grabaciones antes de borrarse solas?',
+      riesgo:'no', brecha:'Sin una política de retención y purga, guardas datos más tiempo del permitido.' },
+    { t:'¿Tienes carteles visibles que informen que el lugar está videovigilado y quién es el responsable?',
+      riesgo:'no', brecha:'Falta la señalética informativa obligatoria en las zonas vigiladas.' },
+    { t:'¿Guardas datos de clientes: correos, teléfonos, RUT, reservas, fichas o programa de fidelidad?',
+      riesgo:'si', brecha:'Manejas una base de datos personales que debe estar inventariada y protegida.' },
+    { t:'¿Cada persona que entra al DVR o a tus sistemas tiene su propio usuario y contraseña?',
+      riesgo:'no', brecha:'Sin usuarios individuales no hay trazabilidad: no puedes probar quién vio qué.' },
+    { t:'¿Tienes un registro escrito de qué datos tratas, para qué, dónde están y quién accede?',
+      riesgo:'no', brecha:'Falta el registro de actividades de tratamiento, lo primero que se fiscaliza.' },
+    { t:'¿Sabrías qué hacer y a quién notificar si mañana te roban o filtran esos datos?',
+      riesgo:'no', brecha:'Sin protocolo de incidentes, el plazo legal de notificación se vence solo.' }
+  ];
+
+  var resp = new Array(PREGUNTAS.length).fill(null);
+  var cont = document.getElementById('leyTest');
+  if (!cont) return;
+
+  var html = '';
+  PREGUNTAS.forEach(function(p, i){
+    html += '<div class="ley-q">' +
+              '<div class="txt"><i>Pregunta ' + (i+1) + ' de ' + PREGUNTAS.length + '</i>' + p.t + '</div>' +
+              '<div class="ley-opts" data-i="' + i + '">' +
+                '<button type="button" class="ley-opt" data-v="si">Sí</button>' +
+                '<button type="button" class="ley-opt" data-v="no">No</button>' +
+                '<button type="button" class="ley-opt" data-v="ns">No sé</button>' +
+              '</div>' +
+            '</div>';
+  });
+  html += '<div class="ley-accion">' +
+            '<span class="ley-prog" id="leyProg">0 de ' + PREGUNTAS.length + ' respondidas</span>' +
+            '<button type="button" class="btn btn-primary" id="leyVer">Ver mi resultado</button>' +
+          '</div>';
+  cont.innerHTML = html;
+
+  cont.addEventListener('click', function(e){
+    var b = e.target.closest('.ley-opt');
+    if (!b) return;
+    var grupo = b.parentNode, i = +grupo.getAttribute('data-i');
+    [].forEach.call(grupo.children, function(x){ x.classList.remove('sel'); });
+    b.classList.add('sel');
+    resp[i] = b.getAttribute('data-v');
+    var n = resp.filter(function(x){ return x !== null; }).length;
+    document.getElementById('leyProg').textContent = n + ' de ' + PREGUNTAS.length + ' respondidas';
+  });
+
+  // cuenta regresiva a la entrada en vigencia
+  var dl = new Date(2026, 11, 1);
+  var dias = Math.ceil((dl - new Date()) / 86400000);
+  var chip = document.getElementById('leyDias');
+  if (chip) {
+    chip.textContent = dias > 0
+      ? 'Vigente en ' + dias + ' días · 1 dic 2026'
+      : 'Vigente desde el 1 dic 2026';
+  }
+
+  document.getElementById('leyVer').addEventListener('click', function(){
+    var n = resp.filter(function(x){ return x !== null; }).length;
+    if (n < PREGUNTAS.length) {
+      alert('Te faltan ' + (PREGUNTAS.length - n) + ' preguntas por responder.');
+      return;
+    }
+
+    var brechas = [], puntos = 0;
+    PREGUNTAS.forEach(function(p, i){
+      var r = resp[i], falla = (p.riesgo === 'si') ? (r === 'si') : (r === 'no' || r === 'ns');
+      if (falla) { brechas.push(p.brecha); puntos++; }
+    });
+
+    var nivel, color, bajada;
+    if (puntos <= 1) {
+      nivel = 'Riesgo bajo'; color = '#22c55e';
+      bajada = 'Vas bien encaminado. Con un par de ajustes y la documentación al día quedas en regla antes de que empiece la fiscalización.';
+    } else if (puntos <= 4) {
+      nivel = 'Riesgo medio'; color = '#eab308';
+      bajada = 'Tienes brechas concretas que se pueden cerrar en pocas semanas. Ninguna es grave por sí sola, pero juntas te dejan sin defensa frente a una fiscalización.';
+    } else {
+      nivel = 'Riesgo alto'; color = '#ef4444';
+      bajada = 'Estás tratando datos personales sin las medidas mínimas que exige la ley. Conviene partir cuanto antes: la agencia fiscaliza evidencia operativa, y esa evidencia se construye con tiempo.';
+    }
+
+    document.getElementById('leyLuz').style.background = color;
+    document.getElementById('leyLuz').style.boxShadow = '0 0 14px ' + color;
+    document.getElementById('leyTitulo').textContent = nivel + ' · ' + puntos + ' de ' + PREGUNTAS.length + ' puntos a resolver';
+    document.getElementById('leyBajada').textContent = bajada;
+
+    var ul = document.getElementById('leyLista');
+    ul.innerHTML = '';
+    if (brechas.length === 0) {
+      var ok = document.createElement('li');
+      ok.className = 'ok';
+      ok.textContent = 'No detectamos brechas en esta autoevaluación. Aun así, conviene dejar la documentación por escrito.';
+      ul.appendChild(ok);
+    } else {
+      brechas.forEach(function(b){
+        var li = document.createElement('li');
+        li.textContent = b;
+        ul.appendChild(li);
+      });
+    }
+
+    var resumen = 'Hola SATI, hice la autoevaluación de la Ley 21.719 en su web.\n\n' +
+                  'Resultado: ' + nivel + ' (' + puntos + ' de ' + PREGUNTAS.length + ' puntos a resolver).\n\n' +
+                  'Puntos detectados:\n' +
+                  (brechas.length ? brechas.map(function(b,i){ return (i+1) + '. ' + b; }).join('\n') : 'Ninguno.') +
+                  '\n\nQuiero saber cómo ponerme en regla.';
+
+    document.getElementById('leyWa').href =
+      'https://wa.me/56955168533?text=' + encodeURIComponent(resumen);
+    document.getElementById('leyMail').href =
+      'https://mail.google.com/mail/?view=cm&to=chilecker@gmail.com' +
+      '&su=' + encodeURIComponent('Autoevaluación Ley 21.719 - ' + nivel) +
+      '&body=' + encodeURIComponent(resumen);
+
+    var caja = document.getElementById('leyRes');
+    caja.classList.add('on');
+    caja.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+})();
+</script>
 
 <!-- ============================================================ EN VIVO -->
 <section id="envivo">
