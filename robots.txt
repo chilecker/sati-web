@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chilecker.github.io/sati-web/sitemap.xml
