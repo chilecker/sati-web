@@ -498,7 +498,7 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
   .sc-final-note{font-size:0.85rem;color:var(--muted);margin:16px 0 0;line-height:1.5;}
 
   .sc-extra-row{
-    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
     padding:14px 16px;border:1px solid var(--line);border-radius:10px;
     background:var(--panel-2);margin-bottom:10px;cursor:pointer;
   }
@@ -509,6 +509,8 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
   .sc-extra-name{font-weight:600;font-size:0.95rem;}
   .sc-extra-price{font-family:var(--font-mono);color:var(--cyan);font-weight:600;font-size:0.92rem;white-space:nowrap;}
   .sc-extra-row.sc-extra-qty{cursor:default;}
+  .sc-extra-thumb{width:56px;height:56px;object-fit:contain;border-radius:8px;background:#fff;flex:none;}
+  .sc-extra-note{display:block;font-size:0.8rem;color:var(--muted);font-weight:400;margin-top:2px;}
 
   /* ---------- en vivo (cámara) ---------- */
   #envivo{background:var(--panel,rgba(255,255,255,0.02));}
@@ -1603,10 +1605,16 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
   const SIZES = ['Hasta 100 m²', '100–200 m²', 'Más de 200 m²'];
 
   // Extras opcionales, se suman aparte del precio del kit.
+  // Foto de la cámara solar (reemplaza por data:image/jpeg;base64,... o por un archivo como 'camara-solar.jpg').
+  const SOLAR_PHOTO = 'camara-solar.jpg';
+
   const EXTRAS = [
     { id: 'ups',  label: 'UPS',           price: 100000, kind: 'checkbox' },
     { id: 'rack', label: 'Rack 4U',       price: 100000, kind: 'checkbox' },
-    { id: 'ptz',  label: 'Cámara IP PTZ', price: 100000, kind: 'quantity' }
+    { id: 'ptz',  label: 'Cámara IP PTZ', price: 100000, kind: 'quantity' },
+    // Cámaras solares inalámbricas: batería + panel solar, sin cables. Cambia aquí precio o foto.
+    { id: 'solarWifi', label: 'Cámara solar inalámbrica WiFi', note: 'Panel solar + batería · instalada · requiere señal WiFi', price: 300000, kind: 'quantity', photo: SOLAR_PHOTO },
+    { id: 'solar4g',   label: 'Cámara solar inalámbrica 4G',   note: 'Panel solar + batería · instalada · con chip, sin WiFi',  price: 300000, kind: 'quantity', photo: SOLAR_PHOTO }
   ];
 
   const DEST_EMAIL = 'chilecker@gmail.com';
@@ -1616,7 +1624,7 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
     dist: {},
     property: null,
     size: null,
-    extras: { ups: false, rack: false, ptzQty: 0 }
+    extras: { ups: false, rack: false, ptzQty: 0, solarWifiQty: 0, solar4gQty: 0 }
   };
 
   const root = document.getElementById('cotizador');
@@ -1629,7 +1637,7 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
     let total = 0;
     if(state.extras.ups) total += EXTRAS.find(e=>e.id==='ups').price;
     if(state.extras.rack) total += EXTRAS.find(e=>e.id==='rack').price;
-    total += state.extras.ptzQty * EXTRAS.find(e=>e.id==='ptz').price;
+    ['ptz','solarWifi','solar4g'].forEach(id=>{ total += (state.extras[id+'Qty']||0) * EXTRAS.find(e=>e.id===id).price; });
     return total;
   }
 
@@ -1784,31 +1792,32 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
       extrasRowsEl.appendChild(row);
     });
 
-    const ptz = EXTRAS.find(e=>e.id==='ptz');
-    const ptzRow = document.createElement('div');
-    ptzRow.className = 'sc-extra-row sc-extra-qty';
-    ptzRow.innerHTML = `
-      <span class="sc-extra-info">
-        <span class="sc-extra-name">${ptz.label}</span>
-      </span>
-      <div class="sc-extra-info">
-        <span class="sc-extra-price">${money(ptz.price)} c/u</span>
-        <div class="sc-dist-controls">
-          <button type="button" class="sc-stepper-btn" data-ptz="minus">−</button>
-          <span class="sc-dist-value" id="ptzQtyLabel">${state.extras.ptzQty}</span>
-          <button type="button" class="sc-stepper-btn" data-ptz="plus">+</button>
+    ['ptz','solarWifi','solar4g'].forEach(id=>{
+      const ex = EXTRAS.find(e=>e.id===id);
+      const key = id + 'Qty';
+      const row = document.createElement('div');
+      row.className = 'sc-extra-row sc-extra-qty' + (ex.photo ? ' sc-extra-photo' : '');
+      row.classList.toggle('selected', state.extras[key] > 0);
+      row.innerHTML = `
+        <span class="sc-extra-info">
+          ${ex.photo ? `<img class="sc-extra-thumb" src="${ex.photo}" alt="${ex.label}" onerror="this.remove()">` : ''}
+          <span><span class="sc-extra-name">${ex.label}</span>${ex.note ? `<small class="sc-extra-note">${ex.note}</small>` : ''}</span>
+        </span>
+        <div class="sc-extra-info">
+          <span class="sc-extra-price">${money(ex.price)} c/u</span>
+          <div class="sc-dist-controls">
+            <button type="button" class="sc-stepper-btn" data-q="minus" aria-label="Quitar ${ex.label}">−</button>
+            <span class="sc-dist-value">${state.extras[key]}</span>
+            <button type="button" class="sc-stepper-btn" data-q="plus" aria-label="Agregar ${ex.label}">+</button>
+          </div>
         </div>
-      </div>
-    `;
-    ptzRow.querySelector('[data-ptz="minus"]').addEventListener('click', ()=>{
-      if(state.extras.ptzQty > 0) state.extras.ptzQty--;
-      document.getElementById('ptzQtyLabel').textContent = state.extras.ptzQty;
+      `;
+      const val = row.querySelector('.sc-dist-value');
+      const upd = ()=>{ val.textContent = state.extras[key]; row.classList.toggle('selected', state.extras[key] > 0); };
+      row.querySelector('[data-q="minus"]').addEventListener('click', ()=>{ if(state.extras[key] > 0) state.extras[key]--; upd(); });
+      row.querySelector('[data-q="plus"]').addEventListener('click', ()=>{ if(state.extras[key] < 20) state.extras[key]++; upd(); });
+      extrasRowsEl.appendChild(row);
     });
-    ptzRow.querySelector('[data-ptz="plus"]').addEventListener('click', ()=>{
-      state.extras.ptzQty++;
-      document.getElementById('ptzQtyLabel').textContent = state.extras.ptzQty;
-    });
-    extrasRowsEl.appendChild(ptzRow);
   }
   document.getElementById('nextBtn5').addEventListener('click', ()=> goTo(6));
 
@@ -1820,7 +1829,10 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
     const parts = [];
     if(state.extras.ups) parts.push(`UPS: ${money(100000)}`);
     if(state.extras.rack) parts.push(`Rack 4U: ${money(100000)}`);
-    if(state.extras.ptzQty > 0) parts.push(`Cámara IP PTZ x${state.extras.ptzQty}: ${money(state.extras.ptzQty * 100000)}`);
+    ['ptz','solarWifi','solar4g'].forEach(id=>{
+      const ex = EXTRAS.find(e=>e.id===id), q = state.extras[id+'Qty'];
+      if(q > 0) parts.push(`${ex.label} x${q}: ${money(q * ex.price)}`);
+    });
     return parts.length ? parts.join(' · ') : 'Sin extras';
   }
 
