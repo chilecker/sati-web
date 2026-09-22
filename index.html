@@ -189,6 +189,17 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
   }
   @media (max-width:760px){.nav-links{display:none;}}
 
+  /* ---------- banner empleo IA ---------- */
+  .empleo-banner{margin-top:28px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+    padding:20px 24px;border:1px solid rgba(34,197,94,0.35);border-radius:14px;text-decoration:none;color:var(--ink-text);
+    background:linear-gradient(135deg,rgba(34,197,94,0.12),rgba(74,222,128,0.04));transition:border-color .15s ease,transform .15s ease;}
+  .empleo-banner:hover{border-color:var(--sky);transform:translateY(-1px);}
+  .empleo-tag{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#02150a;background:var(--sky);padding:5px 10px;border-radius:6px;white-space:nowrap;}
+  .empleo-text{flex:1 1 320px;color:var(--muted);font-size:15px;line-height:1.5;}
+  .empleo-text strong{color:var(--ink-text);font-family:var(--font-display);font-weight:600;}
+  .empleo-go{color:var(--sky);font-weight:600;white-space:nowrap;}
+  @media (prefers-reduced-motion:reduce){.empleo-banner{transition:none}.empleo-banner:hover{transform:none}}
+
   /* ---------- hero ---------- */
   .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);}
   .hero::after{
@@ -570,6 +581,7 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
       <a href="#servicios">Servicios</a>
       <a href="#rural">Internet rural</a>
       <a href="#asistente">Asistente IA</a>
+      <a href="empleo.html">Empleo con IA</a>
       <a href="#cotizador">Cotizador</a>
       <a href="#cumplimiento">Ley 21.719</a>
       <a href="#sobre-sati">Sobre SATI</a>
@@ -590,6 +602,7 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
         Escribir por WhatsApp
       </a>
       <a class="btn btn-ghost" href="mailto:chilecker@gmail.com">Enviar un correo</a>
+      <a class="btn btn-ghost" href="empleo.html">¿Buscas trabajo? Kit gratis con IA →</a>
     </div>
 
     <div class="status-strip mono">
@@ -674,6 +687,12 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
         <p>Observabilidad y respuesta temprana ante incidentes, con la misma disciplina AIOps usada en operaciones a gran escala.</p>
       </article>
     </div>
+
+    <a class="empleo-banner" href="empleo.html">
+      <span class="empleo-tag mono">Nuevo · Gratis</span>
+      <span class="empleo-text"><strong>Busca trabajo con inteligencia artificial.</strong> Sube tu CV y usa nuestro kit de 15 prompts para mejorarlo, encontrar ofertas y postular con orden.</span>
+      <span class="empleo-go">Obtener el kit →</span>
+    </a>
   </div>
 </section>
 
