@@ -33,7 +33,88 @@ above it stays quiet: icon-led service cards with a thin top accent rule instead
 markers (services aren't a sequence), a mono stat strip, plain contact block.
 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SATI Servicios TI</title>
+<title>SATI · Infraestructura TI, redes y cámaras en Santiago</title>
+
+<!-- ============================================================ SEO -->
+<meta name="description" content="Infraestructura TI, redes empresariales, ciberseguridad y videovigilancia para empresas de Santiago. Más de 20 años de experiencia. Cotiza tu instalación de cámaras en línea. Providencia, Región Metropolitana.">
+<meta name="author" content="Pablo Ignacio Parra Retamales">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#000000">
+<link rel="canonical" href="https://chilecker.github.io/sati-web/">
+
+<link rel="icon" type="image/png" href="logo-blanco.png">
+<link rel="apple-touch-icon" href="logo-blanco.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SATI — Servicios Asesorías Tecnología Informática">
+<meta property="og:locale" content="es_CL">
+<meta property="og:url" content="https://chilecker.github.io/sati-web/">
+<meta property="og:title" content="SATI · Infraestructura TI que no falla">
+<meta property="og:description" content="Redes, servidores, ciberseguridad y videovigilancia para empresas que no pueden permitirse tiempo caído. Providencia, Santiago.">
+<meta property="og:image" content="https://chilecker.github.io/sati-web/tarjeta-frente.png">
+<meta property="og:image:width" content="1063">
+<meta property="og:image:height" content="591">
+<meta property="og:image:alt" content="Tarjeta de SATI — Pablo Parra, consultor en infraestructura y redes TI">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SATI · Infraestructura TI que no falla">
+<meta name="twitter:description" content="Redes, servidores, ciberseguridad y videovigilancia para empresas de Santiago.">
+<meta name="twitter:image" content="https://chilecker.github.io/sati-web/tarjeta-frente.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://chilecker.github.io/sati-web/#sati",
+  "name": "SATI",
+  "alternateName": "SATI — Servicios Asesorías Tecnología Informática",
+  "description": "Consultora de infraestructura TI, redes empresariales, ciberseguridad, cloud y videovigilancia para empresas de la Región Metropolitana.",
+  "url": "https://chilecker.github.io/sati-web/",
+  "image": "https://chilecker.github.io/sati-web/logo-blanco.png",
+  "logo": "https://chilecker.github.io/sati-web/logo-blanco.png",
+  "telephone": "+56955168533",
+  "email": "chilecker@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "General Holley 2326",
+    "addressLocality": "Providencia",
+    "addressRegion": "Región Metropolitana",
+    "addressCountry": "CL"
+  },
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Región Metropolitana de Santiago"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Pablo Ignacio Parra Retamales",
+    "jobTitle": "Consultor en Infraestructura y Redes TI"
+  },
+  "knowsAbout": [
+    "Infraestructura TI",
+    "Redes empresariales",
+    "Ciberseguridad",
+    "Microsoft Azure",
+    "Videovigilancia",
+    "Virtualización",
+    "Ley 21.719 protección de datos"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios SATI",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Infraestructura y servidores", "description": "Virtualización y administración de servidores y contenedores: VMware, Docker, Kubernetes." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Redes y conectividad", "description": "Diseño e implementación de redes empresariales y SDN, desde el cableado hasta el enrutamiento." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ciberseguridad y cumplimiento", "description": "Auditorías, respuesta a incidentes y cumplimiento de las leyes 21.663 y 21.719." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cloud y soporte TI", "description": "Migración y administración en Microsoft Azure y 365, mesa de ayuda y soporte continuo." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cámaras y videovigilancia", "description": "Instalación y configuración de sistemas DVR/NVR con reconocimiento facial." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Monitoreo y disponibilidad", "description": "Observabilidad y respuesta temprana ante incidentes con disciplina AIOps." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Internet rural compartido", "description": "Red administrada sobre Starlink para comunidades rurales: distribución inalámbrica, red aislada y velocidad asignada por hogar." } }
+    ]
+  }
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -107,6 +188,17 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
     white-space:nowrap;
   }
   @media (max-width:760px){.nav-links{display:none;}}
+
+  /* ---------- banner empleo IA ---------- */
+  .empleo-banner{margin-top:28px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+    padding:20px 24px;border:1px solid rgba(34,197,94,0.35);border-radius:14px;text-decoration:none;color:var(--ink-text);
+    background:linear-gradient(135deg,rgba(34,197,94,0.12),rgba(74,222,128,0.04));transition:border-color .15s ease,transform .15s ease;}
+  .empleo-banner:hover{border-color:var(--sky);transform:translateY(-1px);}
+  .empleo-tag{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#02150a;background:var(--sky);padding:5px 10px;border-radius:6px;white-space:nowrap;}
+  .empleo-text{flex:1 1 320px;color:var(--muted);font-size:15px;line-height:1.5;}
+  .empleo-text strong{color:var(--ink-text);font-family:var(--font-display);font-weight:600;}
+  .empleo-go{color:var(--sky);font-weight:600;white-space:nowrap;}
+  @media (prefers-reduced-motion:reduce){.empleo-banner{transition:none}.empleo-banner:hover{transform:none}}
 
   /* ---------- hero ---------- */
   .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);}
@@ -406,7 +498,7 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
   .sc-final-note{font-size:0.85rem;color:var(--muted);margin:16px 0 0;line-height:1.5;}
 
   .sc-extra-row{
-    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
     padding:14px 16px;border:1px solid var(--line);border-radius:10px;
     background:var(--panel-2);margin-bottom:10px;cursor:pointer;
   }
@@ -417,6 +509,8 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
   .sc-extra-name{font-weight:600;font-size:0.95rem;}
   .sc-extra-price{font-family:var(--font-mono);color:var(--cyan);font-weight:600;font-size:0.92rem;white-space:nowrap;}
   .sc-extra-row.sc-extra-qty{cursor:default;}
+  .sc-extra-thumb{width:56px;height:56px;object-fit:contain;border-radius:8px;background:#fff;flex:none;}
+  .sc-extra-note{display:block;font-size:0.8rem;color:var(--muted);font-weight:400;margin-top:2px;}
 
   /* ---------- en vivo (cámara) ---------- */
   #envivo{background:var(--panel,rgba(255,255,255,0.02));}
@@ -487,7 +581,11 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
     </a>
     <div class="nav-links">
       <a href="#servicios">Servicios</a>
+      <a href="#rural">Internet rural</a>
+      <a href="#asistente">Asistente IA</a>
+      <a href="empleo.html">Empleo con IA</a>
       <a href="#cotizador">Cotizador</a>
+      <a href="#cumplimiento">Ley 21.719</a>
       <a href="#sobre-sati">Sobre SATI</a>
       <a href="#contacto">Contacto</a>
     </div>
@@ -506,6 +604,7 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
         Escribir por WhatsApp
       </a>
       <a class="btn btn-ghost" href="mailto:chilecker@gmail.com">Enviar un correo</a>
+      <a class="btn btn-ghost" href="empleo.html">¿Buscas trabajo? Kit gratis con IA →</a>
     </div>
 
     <div class="status-strip mono">
@@ -590,8 +689,253 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
         <p>Observabilidad y respuesta temprana ante incidentes, con la misma disciplina AIOps usada en operaciones a gran escala.</p>
       </article>
     </div>
+
+    <a class="empleo-banner" href="empleo.html">
+      <span class="empleo-tag mono">Nuevo · Gratis</span>
+      <span class="empleo-text"><strong>Busca trabajo con inteligencia artificial.</strong> Sube tu CV y usa nuestro kit de 15 prompts para mejorarlo, encontrar ofertas y postular con orden.</span>
+      <span class="empleo-go">Obtener el kit →</span>
+    </a>
   </div>
 </section>
+
+<!-- ============================================================ INTERNET RURAL -->
+<style>
+  .nav-links{gap:24px;}
+  #rural{border-top:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.55) 100%);}
+  .rur-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:64px;}
+  @media (max-width:920px){.rur-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.rur-grid{grid-template-columns:1fr;}}
+  .rur-card{background:rgba(7,15,11,0.86);padding:28px 24px;}
+  .rur-card h3{font-family:var(--font-display);font-size:16px;font-weight:600;margin-bottom:9px;}
+  .rur-card p{color:var(--muted);font-size:14px;line-height:1.65;}
+  .rur-card i.ti{font-size:22px;color:var(--cyan);display:block;margin-bottom:14px;font-style:normal;}
+
+  .rur-sub{font-family:var(--font-mono);font-size:12.5px;letter-spacing:2px;text-transform:uppercase;
+    color:var(--cyan);margin-bottom:26px;display:block;}
+  .rur-pasos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;margin-bottom:64px;}
+  .rur-paso{border-left:2px solid rgba(34,197,94,0.35);padding:4px 0 4px 18px;border-radius:0;}
+  .rur-paso b{display:block;font-family:var(--font-mono);font-size:11.5px;letter-spacing:1.6px;
+    color:var(--cyan);margin-bottom:9px;font-weight:500;}
+  .rur-paso h4{font-family:var(--font-display);font-size:15px;font-weight:600;margin-bottom:7px;}
+  .rur-paso p{color:var(--muted);font-size:13.5px;line-height:1.6;}
+
+  .rur-calc{border:1px solid var(--line);border-radius:14px;background:rgba(7,15,11,0.86);overflow:hidden;}
+  .rur-calc-head{padding:22px 26px;border-bottom:1px solid var(--line);background:rgba(13,26,19,0.6);}
+  .rur-calc-head h3{font-family:var(--font-display);font-size:19px;font-weight:700;margin-bottom:6px;}
+  .rur-calc-head p{color:var(--muted);font-size:14px;line-height:1.6;}
+  .rur-campo{padding:22px 26px;border-bottom:1px solid var(--line);display:flex;gap:22px;
+    align-items:center;flex-wrap:wrap;}
+  .rur-campo .lab{flex:1;min-width:210px;}
+  .rur-campo .lab strong{display:block;font-size:15px;font-weight:600;margin-bottom:5px;}
+  .rur-campo .lab span{color:var(--muted);font-size:13px;line-height:1.5;}
+  .rur-opts{display:flex;gap:8px;flex-wrap:wrap;}
+  .rur-opt{font-family:var(--font-body);font-size:13.5px;padding:9px 15px;border-radius:7px;cursor:pointer;
+    background:transparent;border:1px solid var(--line);color:var(--muted);transition:all .15s ease;}
+  .rur-opt:hover{border-color:rgba(34,197,94,0.45);color:var(--ink-text);}
+  .rur-opt.sel{background:var(--cyan);border-color:var(--cyan);color:#02150a;font-weight:600;}
+  .rur-rango{display:flex;align-items:center;gap:14px;min-width:240px;}
+  .rur-rango input{flex:1;accent-color:var(--cyan);}
+  .rur-rango output{font-family:var(--font-mono);font-size:22px;color:var(--ink-text);min-width:26px;text-align:right;}
+
+  .rur-tot{padding:28px 26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:22px;}
+  .rur-tot .caja span{display:block;font-family:var(--font-mono);font-size:11.5px;letter-spacing:1.4px;
+    text-transform:uppercase;color:var(--muted);margin-bottom:9px;}
+  .rur-tot .caja b{font-size:27px;font-weight:700;letter-spacing:-0.5px;color:var(--mint);}
+  .rur-tot .caja em{display:block;font-style:normal;font-size:12.5px;color:var(--muted);margin-top:7px;line-height:1.5;}
+  .rur-pie{padding:0 26px 26px;display:flex;gap:12px;flex-wrap:wrap;}
+
+  .rur-nota{margin-top:26px;font-size:12.5px;color:var(--muted);line-height:1.7;max-width:74ch;}
+  @media (max-width:640px){
+    .rur-campo{padding:18px;}
+    .rur-opts{width:100%;}
+    .rur-opt{flex:1;}
+  }
+</style>
+
+<section id="rural">
+  <div class="wrap">
+
+    <div class="section-head">
+      <span class="section-eyebrow">Conectividad rural</span>
+      <h2>Internet donde no llega la fibra.</h2>
+      <p>Una sola antena Starlink, repartida entre varias casas con red profesional: cada hogar con su
+         propia clave, su propia red aislada y su velocidad garantizada. No es compartir el WiFi del vecino
+         &mdash; es una red administrada, con el mismo est&aacute;ndar que usamos en empresas.
+         Hasta 6 hogares por antena, para que el ancho de banda alcance de verdad.</p>
+    </div>
+
+    <div class="rur-grid">
+      <div class="rur-card">
+        <i class="ti ti-home-2" aria-hidden="true"></i>
+        <h3>Parcelas y condominios</h3>
+        <p>Grupos de hasta 6 casas dispersas que por separado no justifican una antena cada una.</p>
+      </div>
+      <div class="rur-card">
+        <i class="ti ti-plant-2" aria-hidden="true"></i>
+        <h3>Comunidades agr&iacute;colas</h3>
+        <p>Predios y sectores rurales sin cobertura de fibra ni se&ntilde;al m&oacute;vil estable.</p>
+      </div>
+      <div class="rur-card">
+        <i class="ti ti-building-store" aria-hidden="true"></i>
+        <h3>Negocios rurales</h3>
+        <p>Cabañas, camping, packing o bodega que necesitan conexi&oacute;n para su punto de venta.</p>
+      </div>
+      <div class="rur-card">
+        <i class="ti ti-tent" aria-hidden="true"></i>
+        <h3>Faenas temporales</h3>
+        <p>Obras y campamentos que requieren red operativa desde el primer d&iacute;a.</p>
+      </div>
+    </div>
+
+    <span class="rur-sub">C&oacute;mo funciona</span>
+    <div class="rur-pasos">
+      <div class="rur-paso">
+        <b>01</b>
+        <h4>Antena en punto central</h4>
+        <p>Starlink en modo bypass, sin doble NAT, montada donde el cielo est&eacute; despejado.</p>
+      </div>
+      <div class="rur-paso">
+        <b>02</b>
+        <h4>Gateway administrado</h4>
+        <p>Router empresarial con VLAN y control de tr&aacute;fico: el cerebro que reparte y vigila.</p>
+      </div>
+      <div class="rur-paso">
+        <b>03</b>
+        <h4>M&aacute;stil de distribuci&oacute;n</h4>
+        <p>Switch PoE y antena omnidireccional exterior que cubre las casas m&aacute;s cercanas.</p>
+      </div>
+      <div class="rur-paso">
+        <b>04</b>
+        <h4>Enlace a las casas lejanas</h4>
+        <p>Antena direccional para los hogares a mayor distancia, sin zanjas ni cableado.</p>
+      </div>
+      <div class="rur-paso">
+        <b>05</b>
+        <h4>Una red por hogar</h4>
+        <p>Cada casa con su red y clave propias, aislada del resto y con velocidad asignada.</p>
+      </div>
+    </div>
+
+    <div class="rur-calc">
+      <div class="rur-calc-head">
+        <h3>&iquest;Cu&aacute;nto le sale a cada casa?</h3>
+        <p>Ajusta los datos de tu sector y calcula c&oacute;mo se reparte la inversi&oacute;n y el gasto mensual.</p>
+      </div>
+
+      <div class="rur-campo">
+        <div class="lab"><strong>Casas que participan</strong>
+          <span>Hasta 6 hogares por antena, para que a cada uno le llegue velocidad real en hora punta.</span></div>
+        <div class="rur-rango">
+          <input type="range" id="rurCasas" min="3" max="6" step="1" value="6" aria-label="Casas que participan">
+          <output id="rurCasasOut">6</output>
+        </div>
+      </div>
+
+      <div class="rur-campo">
+        <div class="lab"><strong>Distancia al punto m&aacute;s lejano</strong>
+          <span>Define si basta la antena central o hace falta un enlace direccional.</span></div>
+        <div class="rur-opts" id="rurDist">
+          <button type="button" class="rur-opt sel" data-v="250">Hasta 250 m</button>
+          <button type="button" class="rur-opt" data-v="500">Hasta 500 m</button>
+        </div>
+      </div>
+
+      <div class="rur-campo">
+        <div class="lab"><strong>Servicio Starlink</strong>
+          <span>Plan 4X: antena incluida en la inversi&oacute;n y mensualidad repartida entre las casas.</span></div>
+        <div class="rur-opts">
+          <span class="rur-opt sel" style="cursor:default">Plan 4X &middot; $50.000 al mes</span>
+        </div>
+      </div>
+
+      <div class="rur-tot">
+        <div class="caja">
+          <span>Inversi&oacute;n total en equipos</span>
+          <b id="rurTotal">$0</b>
+          <em>Equipos de red m&aacute;s kit Starlink. Se paga una vez.</em>
+        </div>
+        <div class="caja">
+          <span>Aporte inicial por casa</span>
+          <b id="rurPorCasa">$0</b>
+          <em>Dividido en partes iguales entre los hogares.</em>
+        </div>
+        <div class="caja">
+          <span>Mensual por casa</span>
+          <b id="rurMensual">$0</b>
+          <em>Plan Starlink repartido. Sin contratos individuales.</em>
+        </div>
+      </div>
+
+      <div class="rur-pie">
+        <a class="btn btn-primary" id="rurWa" target="_blank" rel="noopener">Agendar visita t&eacute;cnica</a>
+        <a class="btn btn-ghost" id="rurMail" target="_blank" rel="noopener">Pedir propuesta por correo</a>
+      </div>
+    </div>
+
+    <p class="rur-nota">
+      Valores referenciales de equipamiento y plan, sin instalaci&oacute;n ni obras: el terreno, la altura del
+      m&aacute;stil y el trazado se definen en la visita t&eacute;cnica. SATI dise&ntilde;a, instala y administra la red;
+      la contrataci&oacute;n del servicio Starlink y la elecci&oacute;n del plan adecuado para uso compartido queda
+      a nombre de la comunidad, y la revisamos contigo antes de comprar nada.
+    </p>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  var KIT_250 = 1135000;
+  var KIT_500 = 1390000;
+  var KIT_STARLINK = 350000;
+  var PLAN_MENSUAL = 50000;
+
+  var casas = 6, dist = 250, plan = PLAN_MENSUAL;
+  var $ = function(id){ return document.getElementById(id); };
+  if (!$('rurCasas')) return;
+
+  var clp = function(n){ return '$' + Math.round(n).toLocaleString('es-CL'); };
+
+  function pintar(){
+    var total = (dist === 500 ? KIT_500 : KIT_250) + KIT_STARLINK;
+    $('rurTotal').textContent   = clp(total);
+    $('rurPorCasa').textContent = clp(total / casas);
+    $('rurMensual').textContent = clp(plan / casas);
+
+    var msj = 'Hola SATI, quiero internet rural compartido por Starlink.\n\n' +
+              'Casas que participan: ' + casas + '\n' +
+              'Distancia al punto más lejano: hasta ' + dist + ' m\n' +
+              'Servicio Starlink: plan 4X\n' +
+              'Estimación de la web: ' + clp(total) + ' en equipos, ' +
+              clp(total / casas) + ' por casa y ' + clp(plan / casas) + ' mensuales por casa.\n\n' +
+              'Mi sector es: ';
+    $('rurWa').href = 'https://wa.me/56955168533?text=' + encodeURIComponent(msj);
+    $('rurMail').href = 'https://mail.google.com/mail/?view=cm&to=chilecker@gmail.com' +
+      '&su=' + encodeURIComponent('Internet rural compartido - ' + casas + ' casas') +
+      '&body=' + encodeURIComponent(msj);
+  }
+
+  $('rurCasas').addEventListener('input', function(){
+    casas = +this.value;
+    $('rurCasasOut').textContent = casas;
+    pintar();
+  });
+
+  function grupo(id, fn){
+    $(id).addEventListener('click', function(e){
+      var b = e.target.closest('.rur-opt'); if (!b) return;
+      [].forEach.call(this.children, function(x){ x.classList.remove('sel'); });
+      b.classList.add('sel');
+      fn(+b.getAttribute('data-v'));
+      pintar();
+    });
+  }
+  grupo('rurDist', function(v){ dist = v; });
+
+  pintar();
+})();
+</script>
 
 <!-- ============================================================ SOBRE SATI -->
 <section id="sobre-sati">
@@ -719,6 +1063,234 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
   </div>
 </section>
 
+<!-- ============================================================ LEY 21.719 -->
+<style>
+  #cumplimiento{border-top:1px solid var(--line);}
+  .ley-alerta{
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    border:1px solid rgba(234,179,8,0.35);background:rgba(234,179,8,0.07);
+    border-radius:12px;padding:16px 20px;margin-bottom:36px;
+  }
+  .ley-alerta .ico{font-size:20px;line-height:1;}
+  .ley-alerta p{margin:0;font-size:14.5px;line-height:1.6;color:var(--ink-text);}
+  .ley-alerta b{color:#eab308;}
+  .ley-dias{
+    font-family:var(--font-mono);font-size:12px;letter-spacing:1.6px;text-transform:uppercase;
+    color:#eab308;border:1px solid rgba(234,179,8,0.4);border-radius:6px;padding:6px 12px;white-space:nowrap;
+  }
+
+  .ley-test{border:1px solid var(--line);border-radius:14px;background:rgba(7,15,11,0.86);overflow:hidden;}
+  .ley-q{border-bottom:1px solid var(--line);padding:20px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
+  .ley-q:last-of-type{border-bottom:0;}
+  .ley-q .txt{flex:1;min-width:260px;font-size:15px;line-height:1.55;}
+  .ley-q .txt i{display:block;font-style:normal;font-family:var(--font-mono);font-size:11.5px;
+    letter-spacing:1.4px;color:var(--muted);margin-bottom:7px;}
+  .ley-opts{display:flex;gap:8px;flex:none;}
+  .ley-opt{
+    font-family:var(--font-body);font-size:13.5px;padding:9px 16px;border-radius:7px;cursor:pointer;
+    background:transparent;border:1px solid var(--line);color:var(--muted);transition:all .15s ease;
+  }
+  .ley-opt:hover{border-color:rgba(34,197,94,0.45);color:var(--ink-text);}
+  .ley-opt.sel{background:var(--cyan);border-color:var(--cyan);color:#02150a;font-weight:600;}
+
+  .ley-accion{padding:24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+    background:rgba(13,26,19,0.6);border-top:1px solid var(--line);}
+  .ley-prog{font-family:var(--font-mono);font-size:12.5px;letter-spacing:1.4px;color:var(--muted);}
+  .ley-accion .btn{border:0;cursor:pointer;}
+
+  .ley-res{display:none;margin-top:28px;border:1px solid var(--line);border-radius:14px;padding:32px 28px;background:rgba(7,15,11,0.86);}
+  .ley-res.on{display:block;}
+  .ley-nivel{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+  .ley-luz{width:16px;height:16px;border-radius:50%;flex:none;}
+  .ley-res h3{font-family:var(--font-display);font-size:23px;font-weight:700;}
+  .ley-res .bajada{color:var(--muted);font-size:15.5px;line-height:1.65;margin:14px 0 24px;max-width:62ch;}
+  .ley-brechas{list-style:none;padding:0;margin:0 0 26px;}
+  .ley-brechas li{position:relative;padding-left:26px;margin-bottom:11px;font-size:14.5px;line-height:1.6;color:var(--ink-text);}
+  .ley-brechas li::before{content:"!";position:absolute;left:0;top:0;width:17px;height:17px;border-radius:50%;
+    background:rgba(234,179,8,0.18);color:#eab308;font-size:11px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);}
+  .ley-brechas li.ok::before{content:"\2713";background:rgba(34,197,94,0.18);color:var(--cyan);}
+  .ley-res-btns{display:flex;gap:12px;flex-wrap:wrap;}
+  .ley-nota{margin-top:30px;font-size:12.5px;color:var(--muted);line-height:1.7;max-width:74ch;}
+
+  @media (max-width:640px){
+    .ley-q{padding:18px;}
+    .ley-opts{width:100%;}
+    .ley-opt{flex:1;padding:10px 8px;}
+  }
+</style>
+
+<section id="cumplimiento">
+  <div class="wrap">
+
+    <div class="section-head">
+      <span class="section-eyebrow">Cumplimiento normativo</span>
+      <h2>&iquest;Tu negocio est&aacute; listo para la Ley 21.719?</h2>
+      <p>La nueva Ley de Protecci&oacute;n de Datos Personales entra en vigencia y crea una agencia con
+         poder de fiscalizaci&oacute;n y multas de hasta 20.000 UTM. Si tienes c&aacute;maras o guardas datos
+         de clientes, te aplica. Responde 8 preguntas y sabr&aacute;s d&oacute;nde est&aacute;s parado.</p>
+    </div>
+
+    <div class="ley-alerta">
+      <span class="ico">&#9888;</span>
+      <p><b>Si tus c&aacute;maras graban personas, ya est&aacute;s tratando datos personales.</b>
+         Y si usan reconocimiento facial, son datos biom&eacute;tricos: la categor&iacute;a m&aacute;s sensible de la ley.</p>
+      <span class="ley-dias" id="leyDias">&nbsp;</span>
+    </div>
+
+    <div class="ley-test" id="leyTest"></div>
+
+    <div class="ley-res" id="leyRes">
+      <div class="ley-nivel">
+        <span class="ley-luz" id="leyLuz"></span>
+        <h3 id="leyTitulo"></h3>
+      </div>
+      <p class="bajada" id="leyBajada"></p>
+      <ul class="ley-brechas" id="leyLista"></ul>
+      <div class="ley-res-btns">
+        <a class="btn btn-primary" id="leyWa" target="_blank" rel="noopener">Enviar mi resultado por WhatsApp</a>
+        <a class="btn btn-ghost" id="leyMail" target="_blank" rel="noopener">Enviarlo por correo</a>
+      </div>
+    </div>
+
+    <p class="ley-nota">
+      Esta autoevaluaci&oacute;n es orientativa y no constituye asesor&iacute;a legal. SATI implementa las
+      <b>medidas t&eacute;cnicas</b> que exige la ley &mdash; retenci&oacute;n y purga de grabaciones, control de accesos,
+      registro de actividades de tratamiento, cifrado, se&ntilde;al&eacute;tica y respuesta ante incidentes &mdash;
+      y trabaja junto al abogado de tu empresa cuando el caso lo requiere.
+    </p>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  var PREGUNTAS = [
+    { t:'¿Tienes cámaras de videovigilancia que graban a clientes, pacientes o personal?',
+      riesgo:'si', brecha:'Tus cámaras graban personas: eres responsable de esos datos ante la ley.' },
+    { t:'¿Alguna de tus cámaras usa reconocimiento facial, conteo de personas o análisis de comportamiento?',
+      riesgo:'si', brecha:'Tratas datos biométricos, la categoría más sensible y exigente de la ley.' },
+    { t:'¿Sabes exactamente cuántos días se guardan tus grabaciones antes de borrarse solas?',
+      riesgo:'no', brecha:'Sin una política de retención y purga, guardas datos más tiempo del permitido.' },
+    { t:'¿Tienes carteles visibles que informen que el lugar está videovigilado y quién es el responsable?',
+      riesgo:'no', brecha:'Falta la señalética informativa obligatoria en las zonas vigiladas.' },
+    { t:'¿Guardas datos de clientes: correos, teléfonos, RUT, reservas, fichas o programa de fidelidad?',
+      riesgo:'si', brecha:'Manejas una base de datos personales que debe estar inventariada y protegida.' },
+    { t:'¿Cada persona que entra al DVR o a tus sistemas tiene su propio usuario y contraseña?',
+      riesgo:'no', brecha:'Sin usuarios individuales no hay trazabilidad: no puedes probar quién vio qué.' },
+    { t:'¿Tienes un registro escrito de qué datos tratas, para qué, dónde están y quién accede?',
+      riesgo:'no', brecha:'Falta el registro de actividades de tratamiento, lo primero que se fiscaliza.' },
+    { t:'¿Sabrías qué hacer y a quién notificar si mañana te roban o filtran esos datos?',
+      riesgo:'no', brecha:'Sin protocolo de incidentes, el plazo legal de notificación se vence solo.' }
+  ];
+
+  var resp = new Array(PREGUNTAS.length).fill(null);
+  var cont = document.getElementById('leyTest');
+  if (!cont) return;
+
+  var html = '';
+  PREGUNTAS.forEach(function(p, i){
+    html += '<div class="ley-q">' +
+              '<div class="txt"><i>Pregunta ' + (i+1) + ' de ' + PREGUNTAS.length + '</i>' + p.t + '</div>' +
+              '<div class="ley-opts" data-i="' + i + '">' +
+                '<button type="button" class="ley-opt" data-v="si">Sí</button>' +
+                '<button type="button" class="ley-opt" data-v="no">No</button>' +
+                '<button type="button" class="ley-opt" data-v="ns">No sé</button>' +
+              '</div>' +
+            '</div>';
+  });
+  html += '<div class="ley-accion">' +
+            '<span class="ley-prog" id="leyProg">0 de ' + PREGUNTAS.length + ' respondidas</span>' +
+            '<button type="button" class="btn btn-primary" id="leyVer">Ver mi resultado</button>' +
+          '</div>';
+  cont.innerHTML = html;
+
+  cont.addEventListener('click', function(e){
+    var b = e.target.closest('.ley-opt');
+    if (!b) return;
+    var grupo = b.parentNode, i = +grupo.getAttribute('data-i');
+    [].forEach.call(grupo.children, function(x){ x.classList.remove('sel'); });
+    b.classList.add('sel');
+    resp[i] = b.getAttribute('data-v');
+    var n = resp.filter(function(x){ return x !== null; }).length;
+    document.getElementById('leyProg').textContent = n + ' de ' + PREGUNTAS.length + ' respondidas';
+  });
+
+  // cuenta regresiva a la entrada en vigencia
+  var dl = new Date(2026, 11, 1);
+  var dias = Math.ceil((dl - new Date()) / 86400000);
+  var chip = document.getElementById('leyDias');
+  if (chip) {
+    chip.textContent = dias > 0
+      ? 'Vigente en ' + dias + ' días · 1 dic 2026'
+      : 'Vigente desde el 1 dic 2026';
+  }
+
+  document.getElementById('leyVer').addEventListener('click', function(){
+    var n = resp.filter(function(x){ return x !== null; }).length;
+    if (n < PREGUNTAS.length) {
+      alert('Te faltan ' + (PREGUNTAS.length - n) + ' preguntas por responder.');
+      return;
+    }
+
+    var brechas = [], puntos = 0;
+    PREGUNTAS.forEach(function(p, i){
+      var r = resp[i], falla = (p.riesgo === 'si') ? (r === 'si') : (r === 'no' || r === 'ns');
+      if (falla) { brechas.push(p.brecha); puntos++; }
+    });
+
+    var nivel, color, bajada;
+    if (puntos <= 1) {
+      nivel = 'Riesgo bajo'; color = '#22c55e';
+      bajada = 'Vas bien encaminado. Con un par de ajustes y la documentación al día quedas en regla antes de que empiece la fiscalización.';
+    } else if (puntos <= 4) {
+      nivel = 'Riesgo medio'; color = '#eab308';
+      bajada = 'Tienes brechas concretas que se pueden cerrar en pocas semanas. Ninguna es grave por sí sola, pero juntas te dejan sin defensa frente a una fiscalización.';
+    } else {
+      nivel = 'Riesgo alto'; color = '#ef4444';
+      bajada = 'Estás tratando datos personales sin las medidas mínimas que exige la ley. Conviene partir cuanto antes: la agencia fiscaliza evidencia operativa, y esa evidencia se construye con tiempo.';
+    }
+
+    document.getElementById('leyLuz').style.background = color;
+    document.getElementById('leyLuz').style.boxShadow = '0 0 14px ' + color;
+    document.getElementById('leyTitulo').textContent = nivel + ' · ' + puntos + ' de ' + PREGUNTAS.length + ' puntos a resolver';
+    document.getElementById('leyBajada').textContent = bajada;
+
+    var ul = document.getElementById('leyLista');
+    ul.innerHTML = '';
+    if (brechas.length === 0) {
+      var ok = document.createElement('li');
+      ok.className = 'ok';
+      ok.textContent = 'No detectamos brechas en esta autoevaluación. Aun así, conviene dejar la documentación por escrito.';
+      ul.appendChild(ok);
+    } else {
+      brechas.forEach(function(b){
+        var li = document.createElement('li');
+        li.textContent = b;
+        ul.appendChild(li);
+      });
+    }
+
+    var resumen = 'Hola SATI, hice la autoevaluación de la Ley 21.719 en su web.\n\n' +
+                  'Resultado: ' + nivel + ' (' + puntos + ' de ' + PREGUNTAS.length + ' puntos a resolver).\n\n' +
+                  'Puntos detectados:\n' +
+                  (brechas.length ? brechas.map(function(b,i){ return (i+1) + '. ' + b; }).join('\n') : 'Ninguno.') +
+                  '\n\nQuiero saber cómo ponerme en regla.';
+
+    document.getElementById('leyWa').href =
+      'https://wa.me/56955168533?text=' + encodeURIComponent(resumen);
+    document.getElementById('leyMail').href =
+      'https://mail.google.com/mail/?view=cm&to=chilecker@gmail.com' +
+      '&su=' + encodeURIComponent('Autoevaluación Ley 21.719 - ' + nivel) +
+      '&body=' + encodeURIComponent(resumen);
+
+    var caja = document.getElementById('leyRes');
+    caja.classList.add('on');
+    caja.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+})();
+</script>
+
 <!-- ============================================================ EN VIVO -->
 <section id="envivo">
   <div class="wrap">
@@ -732,6 +1304,161 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
         <iframe src="https://www.youtube.com/embed/live_stream?channel=UC3K9Q2NDGQXOEEzQGZnI9Mg&autoplay=1&mute=1" title="Cámara en vivo SATI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============================================================ ASISTENTE IA -->
+<style>
+  #asistente{
+    background:linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.80) 100%);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .ia-demo{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#000;box-shadow:0 30px 80px -20px rgba(0,0,0,0.8);}
+  .ia-demo-bar{display:flex;align-items:center;gap:10px;padding:11px 18px;border-bottom:1px solid var(--line);background:rgba(7,15,11,0.86);font-family:var(--font-mono);font-size:11.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);}
+  .ia-demo-bar b{color:var(--ink-text);font-weight:600;}
+  .ia-demo-bar .ia-dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:iaPulse 2s ease-in-out infinite;flex:none;}
+  @keyframes iaPulse{50%{opacity:.35}}
+  .ia-demo iframe{display:block;width:100%;height:620px;border:0;}
+  .ia-hint{text-align:center;color:var(--muted);font-size:14px;margin:18px 0 64px;}
+  .ia-hint b{color:var(--mint);font-weight:600;}
+  .ia-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:72px;}
+  @media (max-width:920px){.ia-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.ia-grid{grid-template-columns:1fr;}}
+  .ia-card{background:rgba(7,15,11,0.86);padding:30px 26px;transition:background .2s ease;}
+  .ia-card:hover{background:rgba(13,26,19,0.95);}
+  .ia-card .n{font-family:var(--font-mono);font-size:12px;letter-spacing:2px;color:var(--cyan);display:block;margin-bottom:16px;}
+  .ia-card h3{font-family:var(--font-display);font-size:16.5px;font-weight:600;margin-bottom:10px;}
+  .ia-card p{color:var(--muted);font-size:14.5px;line-height:1.65;}
+  .ia-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:56px;}
+  @media (max-width:880px){.ia-plans{grid-template-columns:1fr;}}
+  .ia-plan{background:rgba(7,15,11,0.86);border:1px solid var(--line);border-radius:14px;padding:32px 28px;display:flex;flex-direction:column;}
+  .ia-plan.destacado{border-color:rgba(34,197,94,0.45);background:rgba(13,26,19,0.95);}
+  .ia-plan .tag{font-family:var(--font-mono);font-size:11.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:14px;}
+  .ia-plan h3{font-family:var(--font-display);font-size:21px;font-weight:700;}
+  .ia-price{font-size:26px;font-weight:700;margin:16px 0 0;letter-spacing:-0.4px;}
+  .ia-price small{display:block;font-size:13px;font-weight:400;color:var(--muted);margin-top:7px;letter-spacing:0;}
+  .ia-plan ul{list-style:none;margin:22px 0 28px;padding:0;}
+  .ia-plan li{position:relative;padding-left:22px;margin-bottom:10px;font-size:14.5px;line-height:1.6;color:var(--muted);}
+  .ia-plan li::before{content:"\25B8";position:absolute;left:0;color:var(--cyan);}
+  .ia-plan .btn{margin-top:auto;justify-content:center;}
+  .ia-cta{border:1px solid var(--line);border-radius:14px;padding:40px 36px;background:linear-gradient(135deg, rgba(34,197,94,0.08), rgba(7,15,11,0.9));display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;}
+  .ia-cta h3{font-family:var(--font-display);font-size:22px;font-weight:700;margin-bottom:10px;}
+  .ia-cta p{color:var(--muted);font-size:15.5px;line-height:1.6;max-width:52ch;}
+  .ia-cta-btns{display:flex;gap:12px;flex-wrap:wrap;}
+  .ia-nota{margin-top:28px;text-align:center;color:var(--muted);font-size:13px;line-height:1.7;max-width:70ch;margin-left:auto;margin-right:auto;}
+</style>
+
+<section id="asistente">
+  <div class="wrap">
+
+    <div class="section-head">
+      <span class="section-eyebrow">Nuevo servicio &middot; IA aplicada</span>
+      <h2>Un asistente que conoce tu operaci&oacute;n.</h2>
+      <p>No es un chatbot gen&eacute;rico. Es una consola de agentes conectada a los sistemas que ya usas
+         &mdash; correo, agenda, archivos, inventario, tickets &mdash; configurada por SATI con la misma
+         disciplina con la que administramos infraestructura cr&iacute;tica.</p>
+    </div>
+
+    <div class="ia-demo">
+      <div class="ia-demo-bar">
+        <span class="ia-dot"></span> <b>Demostraci&oacute;n en vivo</b> &middot; consola de agentes
+      </div>
+      <iframe src="asistente.html?demo=1&amp;tema=sati&amp;nombre=SATI"
+              title="Consola de agentes IA - demostracion"
+              loading="lazy" allow="microphone"></iframe>
+    </div>
+    <p class="ia-hint">
+      Toca cualquier nodo para ver de qu&eacute; se encarga, o pulsa <b>Hablar</b> y preg&uacute;ntale en voz alta.
+    </p>
+
+    <div class="ia-grid">
+      <div class="ia-card">
+        <span class="n">01</span>
+        <h3>Diagn&oacute;stico y dise&ntilde;o</h3>
+        <p>Levantamos tus procesos e identificamos qu&eacute; tareas repetitivas consumen horas. Si algo no conviene automatizar, te lo decimos.</p>
+      </div>
+      <div class="ia-card">
+        <span class="n">02</span>
+        <h3>Conexi&oacute;n a tus sistemas</h3>
+        <p>Integraci&oacute;n con Microsoft 365, Google Workspace, tu ERP o tu mesa de ayuda. Credenciales propias y permisos m&iacute;nimos por agente.</p>
+      </div>
+      <div class="ia-card">
+        <span class="n">03</span>
+        <h3>Despliegue y control</h3>
+        <p>Consola web o de escritorio, por voz o texto, en espa&ntilde;ol. En tu equipo o en tu nube, con tope de gasto definido.</p>
+      </div>
+      <div class="ia-card">
+        <span class="n">04</span>
+        <h3>Capacitaci&oacute;n y soporte</h3>
+        <p>Entrenamos a tu equipo, dejamos documentaci&oacute;n operativa y acompa&ntilde;amos los primeros meses.</p>
+      </div>
+    </div>
+
+    <div class="ia-plans">
+
+      <div class="ia-plan">
+        <span class="tag">Entrada</span>
+        <h3>Piloto</h3>
+        <!-- EDITA: precio -->
+        <div class="ia-price">Desde $390.000<small>pago &uacute;nico &middot; 2 a 3 semanas</small></div>
+        <ul>
+          <li>Diagn&oacute;stico de procesos</li>
+          <li>1 agente en producci&oacute;n</li>
+          <li>Conexi&oacute;n a un sistema</li>
+          <li>Capacitaci&oacute;n inicial</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contacto">Conversemos</a>
+      </div>
+
+      <div class="ia-plan destacado">
+        <span class="tag">El m&aacute;s pedido</span>
+        <h3>Operaci&oacute;n</h3>
+        <!-- EDITA: precio -->
+        <div class="ia-price">Desde $890.000<small>implementaci&oacute;n + $120.000 mensual</small></div>
+        <ul>
+          <li>Hasta 5 agentes conectados</li>
+          <li>Correo, agenda y archivos</li>
+          <li>Consola con voz en espa&ntilde;ol</li>
+          <li>Soporte y ajustes mensuales</li>
+          <li>Informe de uso y ahorro</li>
+        </ul>
+        <a class="btn btn-primary" href="#contacto">Solicitar propuesta</a>
+      </div>
+
+      <div class="ia-plan">
+        <span class="tag">Empresa</span>
+        <h3>Gestionado</h3>
+        <!-- EDITA: precio -->
+        <div class="ia-price">A medida<small>seg&uacute;n integraciones y volumen</small></div>
+        <ul>
+          <li>Agentes por &aacute;rea</li>
+          <li>Integraci&oacute;n con ERP o CRM</li>
+          <li>Despliegue en tu nube</li>
+          <li>Monitoreo y mejora continua</li>
+          <li>Acuerdo de nivel de servicio</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contacto">Hablar con SATI</a>
+      </div>
+
+    </div>
+
+    <div class="ia-cta">
+      <div>
+        <h3>&iquest;Qu&eacute; podr&iacute;a hacer por tu negocio?</h3>
+        <p>Cu&eacute;ntanos qu&eacute; tarea te consume m&aacute;s tiempo cada semana. Te respondemos con un alcance concreto y un n&uacute;mero, sin compromiso.</p>
+      </div>
+      <div class="ia-cta-btns">
+        <a class="btn btn-primary" href="https://wa.me/56955168533?text=Hola%20SATI%2C%20vi%20la%20demo%20del%20asistente%20IA%20en%20la%20web%20y%20quiero%20saber%20m%C3%A1s." target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <a class="btn btn-ghost" href="https://mail.google.com/mail/?view=cm&amp;to=chilecker@gmail.com&amp;su=Consulta%20asistente%20IA%20SATI&amp;body=Hola%20SATI%2C%0A%0AVi%20la%20demostraci%C3%B3n%20del%20asistente%20en%20la%20web.%0A%0AMi%20negocio%3A%20%0ATarea%20que%20m%C3%A1s%20tiempo%20me%20consume%3A%20" target="_blank" rel="noopener">Enviar un correo</a>
+      </div>
+    </div>
+
+    <p class="ia-nota">
+      La demostraci&oacute;n responde con ejemplos preparados y no se conecta a ning&uacute;n sistema: es una muestra
+      de la interfaz y del flujo de trabajo. Cada implementaci&oacute;n se configura con los datos, accesos
+      y agentes de cada cliente.
+    </p>
+
   </div>
 </section>
 
@@ -900,10 +1627,16 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
   const SIZES = ['Hasta 100 m²', '100–200 m²', 'Más de 200 m²'];
 
   // Extras opcionales, se suman aparte del precio del kit.
+  // Foto de la cámara solar (reemplaza por data:image/jpeg;base64,... o por un archivo como 'camara-solar.jpg').
+  const SOLAR_PHOTO = 'camara-solar.jpg';
+
   const EXTRAS = [
     { id: 'ups',  label: 'UPS',           price: 100000, kind: 'checkbox' },
     { id: 'rack', label: 'Rack 4U',       price: 100000, kind: 'checkbox' },
-    { id: 'ptz',  label: 'Cámara IP PTZ', price: 100000, kind: 'quantity' }
+    { id: 'ptz',  label: 'Cámara IP PTZ', price: 100000, kind: 'quantity' },
+    // Cámaras solares inalámbricas: batería + panel solar, sin cables. Cambia aquí precio o foto.
+    { id: 'solarWifi', label: 'Cámara solar inalámbrica WiFi', note: 'Panel solar + batería · instalada · requiere señal WiFi', price: 300000, kind: 'quantity', photo: SOLAR_PHOTO },
+    { id: 'solar4g',   label: 'Cámara solar inalámbrica 4G',   note: 'Panel solar + batería · instalada · con chip, sin WiFi',  price: 300000, kind: 'quantity', photo: SOLAR_PHOTO }
   ];
 
   const DEST_EMAIL = 'chilecker@gmail.com';
@@ -913,7 +1646,7 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
     dist: {},
     property: null,
     size: null,
-    extras: { ups: false, rack: false, ptzQty: 0 }
+    extras: { ups: false, rack: false, ptzQty: 0, solarWifiQty: 0, solar4gQty: 0 }
   };
 
   const root = document.getElementById('cotizador');
@@ -926,7 +1659,7 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
     let total = 0;
     if(state.extras.ups) total += EXTRAS.find(e=>e.id==='ups').price;
     if(state.extras.rack) total += EXTRAS.find(e=>e.id==='rack').price;
-    total += state.extras.ptzQty * EXTRAS.find(e=>e.id==='ptz').price;
+    ['ptz','solarWifi','solar4g'].forEach(id=>{ total += (state.extras[id+'Qty']||0) * EXTRAS.find(e=>e.id===id).price; });
     return total;
   }
 
@@ -1081,31 +1814,32 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
       extrasRowsEl.appendChild(row);
     });
 
-    const ptz = EXTRAS.find(e=>e.id==='ptz');
-    const ptzRow = document.createElement('div');
-    ptzRow.className = 'sc-extra-row sc-extra-qty';
-    ptzRow.innerHTML = `
-      <span class="sc-extra-info">
-        <span class="sc-extra-name">${ptz.label}</span>
-      </span>
-      <div class="sc-extra-info">
-        <span class="sc-extra-price">${money(ptz.price)} c/u</span>
-        <div class="sc-dist-controls">
-          <button type="button" class="sc-stepper-btn" data-ptz="minus">−</button>
-          <span class="sc-dist-value" id="ptzQtyLabel">${state.extras.ptzQty}</span>
-          <button type="button" class="sc-stepper-btn" data-ptz="plus">+</button>
+    ['ptz','solarWifi','solar4g'].forEach(id=>{
+      const ex = EXTRAS.find(e=>e.id===id);
+      const key = id + 'Qty';
+      const row = document.createElement('div');
+      row.className = 'sc-extra-row sc-extra-qty' + (ex.photo ? ' sc-extra-photo' : '');
+      row.classList.toggle('selected', state.extras[key] > 0);
+      row.innerHTML = `
+        <span class="sc-extra-info">
+          ${ex.photo ? `<img class="sc-extra-thumb" src="${ex.photo}" alt="${ex.label}" onerror="this.remove()">` : ''}
+          <span><span class="sc-extra-name">${ex.label}</span>${ex.note ? `<small class="sc-extra-note">${ex.note}</small>` : ''}</span>
+        </span>
+        <div class="sc-extra-info">
+          <span class="sc-extra-price">${money(ex.price)} c/u</span>
+          <div class="sc-dist-controls">
+            <button type="button" class="sc-stepper-btn" data-q="minus" aria-label="Quitar ${ex.label}">−</button>
+            <span class="sc-dist-value">${state.extras[key]}</span>
+            <button type="button" class="sc-stepper-btn" data-q="plus" aria-label="Agregar ${ex.label}">+</button>
+          </div>
         </div>
-      </div>
-    `;
-    ptzRow.querySelector('[data-ptz="minus"]').addEventListener('click', ()=>{
-      if(state.extras.ptzQty > 0) state.extras.ptzQty--;
-      document.getElementById('ptzQtyLabel').textContent = state.extras.ptzQty;
+      `;
+      const val = row.querySelector('.sc-dist-value');
+      const upd = ()=>{ val.textContent = state.extras[key]; row.classList.toggle('selected', state.extras[key] > 0); };
+      row.querySelector('[data-q="minus"]').addEventListener('click', ()=>{ if(state.extras[key] > 0) state.extras[key]--; upd(); });
+      row.querySelector('[data-q="plus"]').addEventListener('click', ()=>{ if(state.extras[key] < 20) state.extras[key]++; upd(); });
+      extrasRowsEl.appendChild(row);
     });
-    ptzRow.querySelector('[data-ptz="plus"]').addEventListener('click', ()=>{
-      state.extras.ptzQty++;
-      document.getElementById('ptzQtyLabel').textContent = state.extras.ptzQty;
-    });
-    extrasRowsEl.appendChild(ptzRow);
   }
   document.getElementById('nextBtn5').addEventListener('click', ()=> goTo(6));
 
@@ -1117,7 +1851,10 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
     const parts = [];
     if(state.extras.ups) parts.push(`UPS: ${money(100000)}`);
     if(state.extras.rack) parts.push(`Rack 4U: ${money(100000)}`);
-    if(state.extras.ptzQty > 0) parts.push(`Cámara IP PTZ x${state.extras.ptzQty}: ${money(state.extras.ptzQty * 100000)}`);
+    ['ptz','solarWifi','solar4g'].forEach(id=>{
+      const ex = EXTRAS.find(e=>e.id===id), q = state.extras[id+'Qty'];
+      if(q > 0) parts.push(`${ex.label} x${q}: ${money(q * ex.price)}`);
+    });
     return parts.length ? parts.join(' · ') : 'Sin extras';
   }
 
