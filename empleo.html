@@ -1,9 +1,17 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="logo-oscuro.png">
 <title>SATI Empleo IA</title>
 <meta name="description" content="Kit gratuito de prompts para buscar trabajo con inteligencia artificial: sube tu CV y deja que la IA lo mejore, busque ofertas y lleve tus postulaciones.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+</head>
+<body>
 <style>
 :root{
   color-scheme: dark;
@@ -15,7 +23,7 @@
   --mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 *{box-sizing:border-box}
-body{background:var(--ground);color:var(--text);font:16px/1.6 var(--body);padding-inline:16px}
+body{margin:0;background:var(--ground);color:var(--text);font:16px/1.6 var(--body);padding-inline:16px}
 .wrap{max-width:1040px;margin:0 auto;padding-block:28px 64px}
 a{color:var(--accent)}
 :focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:4px}
@@ -59,17 +67,24 @@ section>p.sub{color:var(--muted);margin:0 0 22px;max-width:62ch}
 .gate li{margin:4px 0}
 form{display:grid;gap:12px}
 label{font:500 13px var(--body);color:var(--muted);display:grid;gap:6px}
+label .opt-tag{font:400 12px var(--mono);color:var(--muted);opacity:.8}
 input,select{font:16px var(--body);color:var(--text);background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:11px 12px;width:100%}
 input:focus,select:focus{border-color:var(--accent);outline:none}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.check{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted)}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);line-height:1.5}
 .check input{width:18px;height:18px;margin-top:2px;flex:none}
+.check b{color:var(--text);font-weight:600}
+.notice{font-size:12.5px;line-height:1.55;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:var(--ground)}
+.notice strong{color:var(--text);font-weight:600}
+.notice p{margin:0}
+.notice p+p{margin-top:6px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 15px var(--body);padding:12px 18px;border-radius:9px;border:0;cursor:pointer;text-decoration:none;background:var(--accent);color:var(--accent-ink)}
 .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
 .btn.wa{background:#25D366;color:#03210f}
 .err{color:#FF8A7A;font-size:13px;min-height:1em;margin:0}
 .done{border:1px dashed var(--ok);border-radius:10px;padding:16px;display:grid;gap:10px}
 .done strong{color:var(--ok)}
+.linkbtn{all:unset;cursor:pointer;color:var(--accent);text-decoration:underline;text-underline-offset:2px;font-size:13px}
 
 /* kit */
 .locked .kit{filter:blur(6px);pointer-events:none;user-select:none;opacity:.55}
@@ -99,10 +114,24 @@ tr:last-child td{border-bottom:0}
 td:first-child{font-weight:600;white-space:nowrap}
 
 /* rules */
-.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rules{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .rules div{border-top:2px solid var(--signal);padding-top:12px}
 .rules h3{font-size:16px;margin-bottom:6px}
 .rules p{margin:0;color:var(--muted);font-size:14px}
+
+/* privacy policy */
+.policy{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px}
+.policy h3{font-size:17px;margin:26px 0 8px}
+.policy h3:first-of-type{margin-top:4px}
+.policy p,.policy li{color:var(--muted);font-size:15px;max-width:72ch}
+.policy p{margin:0 0 10px}
+.policy ul{margin:0 0 10px;padding-left:20px}
+.policy li{margin:4px 0}
+.policy strong{color:var(--text);font-weight:600}
+.policy .meta{font:12px var(--mono);color:var(--muted);margin-top:22px;padding-top:14px;border-top:1px solid var(--line)}
+.rights{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 14px}
+.rights div{background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--muted)}
+.rights b{display:block;color:var(--text);font-family:var(--display);font-size:14px;margin-bottom:2px}
 
 /* service */
 .service{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;background:linear-gradient(135deg,var(--surface-2),var(--surface));border:1px solid var(--line);border-radius:14px;padding:28px}
@@ -110,22 +139,25 @@ td:first-child{font-weight:600;white-space:nowrap}
 .service p{color:var(--muted);margin:8px 0 0;max-width:56ch}
 .contact{font:14px var(--mono);color:var(--muted);margin-top:10px}
 footer{margin-top:48px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer nav{display:flex;gap:16px;flex-wrap:wrap}
 
+@media (max-width:960px){.rules{grid-template-columns:1fr 1fr}}
 @media (max-width:860px){
   .hero,.gate{grid-template-columns:1fr}
   .flow{grid-template-columns:1fr}
   .flow div{border-right:0;border-bottom:1px solid var(--line)}
   .flow div:last-child{border-bottom:0}
-  .prompts,.rules{grid-template-columns:1fr}
+  .prompts{grid-template-columns:1fr}
+  .rights{grid-template-columns:1fr 1fr}
 }
+@media (max-width:560px){.rules,.rights{grid-template-columns:1fr}.policy{padding:20px}}
 @media (max-width:480px){.row2{grid-template-columns:1fr}}
 </style>
-</head><body>
 
 <div class="wrap" id="app">
   <div class="top">
-    <a class="brand" href="./" style="color:inherit;text-decoration:none"><span class="chip-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></span>SATI</a>
-    <small>Servicios · Asesorías · Tecnología Informática</small>
+    <a class="brand" href="index.html" style="color:inherit;text-decoration:none"><span class="chip-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></span>SATI</a>
+    <a href="index.html" style="font:13px var(--mono);color:var(--muted);text-decoration:none">← Volver a SATI</a>
   </div>
 
   <header class="hero">
@@ -159,7 +191,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;display:flex;justify-co
     <h2>Recibe el kit completo</h2>
     <div class="gate">
       <div>
-        <p style="margin:0">Déjanos tus datos y desbloquea al instante los 15 prompts, la lista de portales de empleo de Chile y las reglas para usar la IA sin riesgos.</p>
+        <p style="margin:0">Déjanos tu nombre y tu email y desbloquea al instante los 15 prompts, la lista de portales de empleo de Chile y las reglas para usar la IA sin riesgos.</p>
         <ul>
           <li>Prompt maestro de agente de búsqueda</li>
           <li>6 prompts para mejorar el CV (ATS, logros, tono ejecutivo)</li>
@@ -170,20 +202,29 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;display:flex;justify-co
       </div>
       <div>
         <form id="lead" novalidate>
-          <label for="f-nombre">Nombre<input id="f-nombre" name="nombre" autocomplete="name" required placeholder="Ej: Camila Rojas"></label>
+          <label for="f-nombre">Nombre<input id="f-nombre" name="nombre" autocomplete="given-name" required placeholder="Ej: Camila"></label>
           <div class="row2">
             <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email" required placeholder="camila@correo.cl"></label>
-            <label for="f-wsp">WhatsApp<input id="f-wsp" name="wsp" type="tel" autocomplete="tel" required placeholder="+56 9 1234 5678"></label>
+            <label for="f-wsp">WhatsApp <span class="opt-tag">(opcional)</span><input id="f-wsp" name="wsp" type="tel" autocomplete="tel" placeholder="+56 9 1234 5678"></label>
           </div>
-          <label for="f-cargo">¿Qué cargo buscas?<input id="f-cargo" name="cargo" placeholder="Ej: Analista contable, Jefe de bodega…"></label>
-          <label class="check" for="f-ok"><input id="f-ok" type="checkbox" required> Acepto que SATI me contacte por WhatsApp o email para enviarme el kit y novedades. Puedo pedir que me borren cuando quiera.</label>
+          <label for="f-cargo">¿Qué cargo buscas? <span class="opt-tag">(opcional)</span><input id="f-cargo" name="cargo" placeholder="Ej: Analista contable, Jefe de bodega…"></label>
+
+          <label class="check" for="f-ok"><input id="f-ok" type="checkbox" required> <span>Acepto que <b>SATI EIRL</b> use estos datos <b>solo para enviarme el kit</b>, según la <a href="#privacidad">política de privacidad</a>. <span class="opt-tag">(obligatorio)</span></span></label>
+          <label class="check" for="f-mkt"><input id="f-mkt" type="checkbox"> <span>Quiero recibir novedades y ofertas de servicios de SATI por email o WhatsApp. Puedo darme de baja cuando quiera. <span class="opt-tag">(opcional)</span></span></label>
+
+          <div class="notice" role="note" aria-label="Información básica sobre protección de datos">
+            <p><strong>Información básica sobre tus datos</strong> (Ley 19.628 y Ley 21.719)</p>
+            <p><strong>Responsable:</strong> SATI EIRL, RUT 76.525.198-2, Providencia, Santiago · chilecker@gmail.com. <strong>Para qué:</strong> enviarte el kit y, solo si marcas la segunda casilla, novedades. <strong>Base legal:</strong> tu consentimiento, que puedes retirar en cualquier momento. <strong>Plazo:</strong> 12 meses o hasta que pidas la eliminación. <strong>Derechos:</strong> acceso, rectificación, supresión, oposición, portabilidad y bloqueo. <a href="#privacidad">Leer la política completa</a>.</p>
+          </div>
+
           <p class="err" id="f-err" role="alert"></p>
           <button class="btn" type="submit">Desbloquear el kit</button>
         </form>
         <div class="done" id="done" hidden>
           <strong>✓ Kit desbloqueado</strong>
-          <span style="color:var(--muted);font-size:14px">Para recibirlo también en tu teléfono, envíanos tus datos por WhatsApp (se abre con el mensaje listo).</span>
+          <span style="color:var(--muted);font-size:14px">Tus datos no se envían a ningún servidor desde esta página. Si quieres recibir el kit también en tu teléfono, puedes mandarnos el mensaje por WhatsApp: se abre con el texto listo y tú decides si lo envías.</span>
           <a class="btn wa" id="wa" href="#" target="_blank" rel="noopener">Enviar mis datos por WhatsApp</a>
+          <button type="button" class="linkbtn" id="forget">Borrar mis datos de este navegador</button>
         </div>
       </div>
     </div>
@@ -194,7 +235,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;display:flex;justify-co
     <div class="kit">
       <p class="eyebrow">El kit</p>
       <h2>15 prompts listos para copiar</h2>
-      <p class="sub">Reemplaza lo que está en <span style="color:var(--signal);font-family:var(--mono)">[corchetes]</span>. Pega tu CV como texto o adjúntalo en PDF o Word.</p>
+      <p class="sub">Reemplaza lo que está en <span style="color:var(--signal);font-family:var(--mono)">[corchetes]</span>. Pega tu CV como texto o adjúntalo en PDF o Word, <strong style="color:var(--text)">sin RUT, dirección exacta ni fecha de nacimiento</strong>: la IA no los necesita.</p>
 
       <div class="cat">
         <h3><span>A</span>El agente de búsqueda</h3>
@@ -236,10 +277,11 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;display:flex;justify-co
 
       <section>
         <p class="eyebrow">Antes de empezar</p>
-        <h2>Tres reglas para usar la IA sin riesgos</h2>
+        <h2>Cuatro reglas para usar la IA sin riesgos</h2>
         <div class="rules">
           <div><h3>Nada inventado</h3><p>Exige que la IA marque como [PENDIENTE] lo que no sabe. Un logro falso se cae en la primera entrevista.</p></div>
           <div><h3>Tus claves son tuyas</h3><p>Nunca le entregues contraseñas: inicia sesión tú en cada portal y deja que la IA trabaje con la sesión abierta.</p></div>
+          <div><h3>Comparte lo mínimo</h3><p>Quita RUT, dirección, fecha de nacimiento y datos de tus referencias antes de subir el CV. Agrégalos tú al final, si el aviso los pide.</p></div>
           <div><h3>Tú apruebas</h3><p>Pide una lista numerada de ofertas y aprueba cada postulación. Revisa las respuestas a las preguntas de filtro.</p></div>
         </div>
       </section>
@@ -258,8 +300,62 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;display:flex;justify-co
     </div>
   </section>
 
+  <section id="privacidad">
+    <p class="eyebrow">Protección de datos personales</p>
+    <h2>Política de privacidad</h2>
+    <div class="policy">
+      <h3>1. Quién es responsable de tus datos</h3>
+      <p><strong>SATI EIRL</strong> (Servicios, Asesorías y Tecnología Informática), RUT 76.525.198-2, con domicilio en Providencia, Santiago de Chile. Contacto para todo lo relacionado con tus datos: <a href="mailto:chilecker@gmail.com?subject=Protecci%C3%B3n%20de%20datos%20-%20SATI%20Empleo%20IA">chilecker@gmail.com</a> o WhatsApp +56 9 5516 8533.</p>
+
+      <h3>2. Qué datos pedimos</h3>
+      <ul>
+        <li><strong>Obligatorios:</strong> nombre y email.</li>
+        <li><strong>Opcionales:</strong> número de WhatsApp y cargo que buscas.</li>
+      </ul>
+      <p>No pedimos RUT, dirección, fecha de nacimiento, datos de salud ni ningún otro dato sensible. Esta página no usa cookies de seguimiento, publicidad ni analítica. Está alojada en GitHub Pages y carga tipografías de Google Fonts; estos proveedores pueden recibir datos técnicos como tu dirección IP, según sus propias políticas.</p>
+
+      <h3>3. Para qué los usamos y con qué base legal</h3>
+      <ul>
+        <li><strong>Enviarte el kit</strong> y responder tus consultas. Base legal: tu consentimiento (primera casilla).</li>
+        <li><strong>Enviarte novedades y ofertas de servicios de SATI</strong>, solo si marcas la segunda casilla. Base legal: tu consentimiento, separado del anterior.</li>
+      </ul>
+      <p>No vendemos ni arrendamos tus datos, no los cedemos a terceros para su publicidad y no tomamos decisiones automatizadas ni elaboramos perfiles con ellos.</p>
+
+      <h3>4. Cómo llegan tus datos a SATI</h3>
+      <p>El formulario funciona en tu navegador: al desbloquear el kit, tus datos <strong>no se envían a ningún servidor</strong>. Para recordar que ya lo desbloqueaste, guardamos en tu navegador solo una marca, sin tu nombre, email ni teléfono. Puedes borrarla con el botón “Borrar mis datos de este navegador”.</p>
+      <p>SATI recibe tus datos <strong>solo si tú decides enviarlos</strong> con el botón de WhatsApp o por correo. En ese caso los recibe a través de WhatsApp (Meta Platforms) o de Gmail (Google), que pueden almacenarlos en servidores fuera de Chile según sus propias políticas.</p>
+
+      <h3>5. Cuánto tiempo los guardamos</h3>
+      <p>Hasta <strong>12 meses</strong> desde tu último contacto con nosotros, o menos si nos pides eliminarlos o retiras tu consentimiento. Después los eliminamos.</p>
+
+      <h3>6. Tus derechos</h3>
+      <div class="rights">
+        <div><b>Acceso</b>Saber qué datos tuyos tenemos y cómo los usamos.</div>
+        <div><b>Rectificación</b>Corregir datos inexactos o incompletos.</div>
+        <div><b>Supresión</b>Pedir que los eliminemos.</div>
+        <div><b>Oposición</b>Negarte a un uso, como las novedades.</div>
+        <div><b>Portabilidad</b>Recibirlos en un formato que puedas reutilizar.</div>
+        <div><b>Bloqueo</b>Suspender temporalmente su uso.</div>
+      </div>
+      <p>Para ejercerlos, escríbenos a <a href="mailto:chilecker@gmail.com?subject=Ejercicio%20de%20derechos%20-%20datos%20personales">chilecker@gmail.com</a> indicando qué derecho quieres ejercer y el email o número con que te registraste. Respondemos en un máximo de <strong>30 días corridos</strong>. Puedes retirar tu consentimiento en cualquier momento sin costo, y el retiro no afecta lo que hicimos antes con tu autorización.</p>
+      <p>Si no quedas conforme con nuestra respuesta, puedes reclamar ante la <strong>Agencia de Protección de Datos Personales</strong>.</p>
+
+      <h3>7. Seguridad</h3>
+      <p>Guardamos los datos que nos envías en cuentas protegidas con contraseña robusta y verificación en dos pasos, y solo SATI tiene acceso a ellos.</p>
+
+      <h3>8. Menores de edad</h3>
+      <p>El kit está pensado para personas mayores de 18 años. Si eres menor de edad, no envíes tus datos.</p>
+
+      <h3>9. Cambios a esta política</h3>
+      <p>Si cambiamos cómo usamos tus datos, actualizaremos esta página y la fecha de abajo. Si el cambio afecta una finalidad que ya autorizaste, te pediremos un nuevo consentimiento.</p>
+
+      <p class="meta">Última actualización: 6 de octubre de 2026 · Marco legal: Ley 19.628 sobre protección de la vida privada, modificada por la Ley 21.719.</p>
+    </div>
+  </section>
+
   <footer>
     <span>© 2026 SATI EIRL · Santiago de Chile</span>
+    <nav><a href="#privacidad">Política de privacidad</a><a href="mailto:chilecker@gmail.com?subject=Ejercicio%20de%20derechos%20-%20datos%20personales">Ejercer mis derechos</a></nav>
     <span>Los prompts funcionan con cualquier asistente de IA. Revisa siempre lo que envías.</span>
   </footer>
 </div>
@@ -359,23 +455,40 @@ for (const k of Object.keys(P)) {
 }
 
 const kit=document.getElementById('kit'), form=document.getElementById('lead'), done=document.getElementById('done'), err=document.getElementById('f-err');
+const FLAG='sati-kit-ok';
+// Minimización: el navegador guarda solo una marca de "kit desbloqueado", nunca datos personales.
+try{localStorage.removeItem('sati-kit');}catch{} // limpia datos que guardaba la versión anterior
 function unlock(d){
   kit.classList.remove('locked');
   form.hidden=true; done.hidden=false;
-  const msg=`Hola SATI, quiero el kit de búsqueda de empleo con IA.\nNombre: ${d.nombre}\nEmail: ${d.email}\nWhatsApp: ${d.wsp}`+(d.cargo?`\nCargo que busco: ${d.cargo}`:'');
-  document.getElementById('wa').href='https://wa.me/56955168533?text='+encodeURIComponent(msg);
+  const wa=document.getElementById('wa');
+  if(d){
+    const msg=`Hola SATI, quiero el kit de búsqueda de empleo con IA.\nNombre: ${d.nombre}\nEmail: ${d.email}`+(d.wsp?`\nWhatsApp: ${d.wsp}`:'')+(d.cargo?`\nCargo que busco: ${d.cargo}`:'')+`\nAcepto la política de privacidad para recibir el kit.`+(d.mkt?`\nTambién acepto recibir novedades de SATI.`:`\nNo quiero recibir novedades.`);
+    wa.href='https://wa.me/56955168533?text='+encodeURIComponent(msg);
+    wa.hidden=false;
+  }else{
+    wa.hidden=true;
+  }
 }
-try{const saved=JSON.parse(localStorage.getItem('sati-kit')||'null'); if(saved) unlock(saved);}catch{}
+try{ if(localStorage.getItem(FLAG)==='1') unlock(null); }catch{}
 form.addEventListener('submit',e=>{
   e.preventDefault(); err.textContent='';
-  const d={nombre:form.nombre.value.trim(),email:form.email.value.trim(),wsp:form.wsp.value.trim(),cargo:form.cargo.value.trim()};
+  const d={nombre:form.nombre.value.trim(),email:form.email.value.trim(),wsp:form.wsp.value.trim(),cargo:form.cargo.value.trim(),mkt:document.getElementById('f-mkt').checked};
   if(!d.nombre) return err.textContent='Escribe tu nombre.';
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) return err.textContent='Revisa el email: debe tener el formato nombre@dominio.cl.';
-  if(d.wsp.replace(/\D/g,'').length<8) return err.textContent='Escribe un WhatsApp válido, por ejemplo +56 9 1234 5678.';
-  if(!document.getElementById('f-ok').checked) return err.textContent='Marca la casilla de autorización para continuar.';
-  try{localStorage.setItem('sati-kit',JSON.stringify(d));}catch{}
+  if(d.wsp && d.wsp.replace(/\D/g,'').length<8) return err.textContent='Revisa el WhatsApp, por ejemplo +56 9 1234 5678, o déjalo en blanco.';
+  if(!document.getElementById('f-ok').checked) return err.textContent='Para recibir el kit, acepta la política de privacidad (primera casilla).';
+  try{localStorage.setItem(FLAG,'1');}catch{}
   unlock(d);
   kit.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
 });
+document.getElementById('forget').addEventListener('click',()=>{
+  try{localStorage.removeItem(FLAG);localStorage.removeItem('sati-kit');}catch{}
+  form.reset(); form.hidden=false; done.hidden=true; kit.classList.add('locked');
+  err.textContent='Listo: este navegador ya no guarda nada tuyo.';
+  document.getElementById('registro').scrollIntoView();
+});
 </script>
-</body></html>
+
+</body>
+</html>

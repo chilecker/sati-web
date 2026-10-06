@@ -1,37 +1,3 @@
-<!--
-DESIGN PLAN (SATI — landing page)
-
-Subject: SATI, a one-person IT infrastructure/networking/cybersecurity consultancy
-in Providencia, Santiago, run by Pablo Parra (20+ yrs sysadmin/networking/AIOps).
-Deliberately commits to ONE visual world (no light-mode toggle): a phosphor-terminal
-read — pure black ground, green type — over a looping "hacker HUD" video background
-the client supplied (hue-shifted from red to green so it sits inside the palette
-instead of fighting it). The video is inlined as a data URI so the page stays a
-single portable file.
-
-Color (named tokens):
-  --ink        #000000   page ground, deepest navy
-  --panel      #070f0b   card / section surfaces
-  --panel-2    #0d1a13   hover / raised surfaces, input fields
-  --line       rgba(74,222,128,0.18)  hairline borders
-  --cyan       #22c55e   primary accent (token name kept from the first cut)
-  --sky        #4ade80   brighter partner, used in every accent gradient
-  --mint       #a7f3d0   pale green for "live" status marks
-  --ink-text   #c9f7dc   primary text — green-biased near-white
-  --muted      #6f9a83   secondary text, desaturated green-grey
-
-Type (3 roles):
-  Display  — Sora 600/700   headlines; geometric, technical character
-  Body     — IBM Plex Sans  running text; enterprise/infra heritage fits an IT consultancy
-  Mono     — IBM Plex Mono  eyebrows, stat numbers, status strip, service tags —
-             literally the terminal/config-file register this consultant works in daily
-
-Layout concept: single-scroll one-pager, left-aligned/asymmetric (not centered-everything).
-The video is a fixed layer behind the whole page at low opacity under a black scrim, so it
-reads as atmosphere rather than as content and never competes with running text. Everything
-above it stays quiet: icon-led service cards with a thin top accent rule instead of numbered
-markers (services aren't a sequence), a mono stat strip, plain contact block.
--->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SATI · Infraestructura TI, redes y cámaras en Santiago</title>
 
@@ -74,6 +40,7 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
   "logo": "https://chilecker.github.io/sati-web/logo-blanco.png",
   "telephone": "+56955168533",
   "email": "chilecker@gmail.com",
+  "taxID": "76.525.198-2",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "General Holley 2326",
@@ -335,6 +302,28 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
   .contact-card .btn{margin-top:24px;width:100%;justify-content:center;}
 
   footer{padding:40px 0 108px;border-top:1px solid var(--line);background:rgba(0,0,0,0.72);}
+
+  /* ---------- privacidad ---------- */
+  #privacidad{position:relative;z-index:1;padding:96px 0;background:rgba(0,0,0,0.80);border-top:1px solid var(--line);}
+  .policy{max-width:820px;border:1px solid var(--line);border-radius:14px;padding:32px;background:rgba(7,15,11,0.88);}
+  @media (max-width:640px){.policy{padding:22px;}}
+  .policy h3{font-family:var(--font-display);font-size:17px;font-weight:600;margin:26px 0 8px;}
+  .policy h3:first-child{margin-top:0;}
+  .policy p,.policy li{color:var(--muted);font-size:15px;line-height:1.7;max-width:72ch;}
+  .policy p{margin:0 0 10px;}
+  .policy ul{margin:0 0 10px;padding-left:20px;}
+  .policy li{margin:4px 0;}
+  .policy strong{color:var(--ink-text);font-weight:600;}
+  .policy a{color:var(--cyan);}
+  .policy .meta{font-family:var(--font-mono);font-size:12px;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);}
+  .rights{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 14px;}
+  @media (max-width:760px){.rights{grid-template-columns:1fr 1fr;}}
+  @media (max-width:480px){.rights{grid-template-columns:1fr;}}
+  .rights div{border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:13.5px;color:var(--muted);background:rgba(0,0,0,0.5);}
+  .rights b{display:block;color:var(--ink-text);font-family:var(--font-display);font-size:14px;margin-bottom:2px;}
+  .footer-links{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--font-mono);font-size:12.5px;}
+  .footer-links a{color:var(--muted);text-decoration:none;}
+  .footer-links a:hover{color:var(--cyan);}
   .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
   .footer-brand{display:flex;align-items:center;gap:10px;}
   .footer-brand .brand-mark{width:26px;height:26px;}
@@ -1542,6 +1531,73 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
   </div>
 </section>
 
+<!-- ============================================================ PRIVACIDAD -->
+<section id="privacidad">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow">Protección de datos personales</span>
+      <h2>Política de privacidad</h2>
+      <p>Cómo tratamos los datos de quienes visitan este sitio o nos contactan, conforme a la Ley 19.628 y su modificación por la Ley 21.719.</p>
+    </div>
+    <div class="policy">
+      <h3>1. Responsable</h3>
+      <p><strong>SATI EIRL</strong> (Servicios, Asesorías y Tecnología Informática), RUT 76.525.198-2, General Holley 2326, Providencia, Santiago de Chile. Contacto para temas de datos personales: <a href="mailto:chilecker@gmail.com?subject=Datos%20personales%20-%20SATI">chilecker@gmail.com</a> o WhatsApp +56 9 5516 8533.</p>
+
+      <h3>2. Qué datos tratamos</h3>
+      <p>Este sitio no tiene cuentas de usuario ni guarda tus datos en un servidor propio. Solo recibimos los datos que tú decides enviarnos:</p>
+      <ul>
+        <li><strong>Contacto por WhatsApp o correo:</strong> nombre, teléfono o email, empresa y la necesidad que nos describes.</li>
+        <li><strong>Cotizador de cámaras y diagnóstico Ley 21.719:</strong> las respuestas se calculan en tu navegador. Llegan a SATI solo si presionas enviar, en un mensaje de Gmail o WhatsApp que tú revisas antes de mandarlo.</li>
+        <li><strong>Kit de empleo con IA:</strong> se rige por la política de su propia página.</li>
+      </ul>
+      <p>Te pedimos no enviarnos contraseñas ni datos sensibles por estos canales.</p>
+
+      <h3>3. Para qué los usamos y con qué base legal</h3>
+      <ul>
+        <li><strong>Responder tu consulta y preparar una cotización.</strong> Base legal: tu consentimiento al contactarnos y las gestiones previas a un contrato.</li>
+        <li><strong>Prestar el servicio contratado y facturarlo.</strong> Base legal: el contrato y las obligaciones tributarias.</li>
+        <li><strong>Enviarte novedades de SATI</strong>, solo si nos lo autorizas expresamente.</li>
+      </ul>
+      <p>No vendemos ni cedemos tus datos, no los usamos para publicidad de otras empresas y no tomamos decisiones automatizadas sobre ti.</p>
+
+      <h3>4. Asistente IA de demostración</h3>
+      <p>El asistente funciona en tu navegador. Si decides usarlo con tu propia clave de API de Anthropic, la clave queda guardada solo en tu navegador y tus mensajes se envían directamente a Anthropic, sin pasar por SATI. No escribas datos personales de terceros en la demostración.</p>
+
+      <h3>5. Cámara en vivo</h3>
+      <p>La sección “En vivo” transmite por YouTube una cámara de demostración de SATI. La cámara se orienta para no captar personas identificables y no graba audio. Si apareces en la imagen y quieres que la ajustemos, escríbenos y lo resolvemos de inmediato.</p>
+
+      <h3>6. Servicios de terceros en esta web</h3>
+      <p>El sitio está alojado en <strong>GitHub Pages</strong> (GitHub, Inc.) y carga tipografías de <strong>Google Fonts</strong>, la radio de fondo desde <strong>YouTube</strong> en modo de privacidad mejorada y la transmisión en vivo desde YouTube. Estos proveedores pueden recibir datos técnicos como tu dirección IP y tipo de navegador, y procesarlos fuera de Chile según sus propias políticas. SATI no usa cookies propias, analítica ni píxeles de publicidad.</p>
+      <p>Si nos escribes, tus mensajes pasan por <strong>WhatsApp (Meta)</strong> o <strong>Gmail (Google)</strong>, que también pueden almacenarlos fuera de Chile.</p>
+
+      <h3>7. Cuánto tiempo los guardamos</h3>
+      <ul>
+        <li>Consultas que no terminan en un servicio: hasta <strong>12 meses</strong> desde el último contacto.</li>
+        <li>Datos de clientes: mientras dure el servicio y luego por el plazo que exige la ley tributaria (en general, 6 años para la documentación contable).</li>
+      </ul>
+
+      <h3>8. Tus derechos</h3>
+      <div class="rights">
+        <div><b>Acceso</b>Saber qué datos tuyos tenemos.</div>
+        <div><b>Rectificación</b>Corregir datos inexactos.</div>
+        <div><b>Supresión</b>Pedir que los eliminemos.</div>
+        <div><b>Oposición</b>Negarte a un uso, como las novedades.</div>
+        <div><b>Portabilidad</b>Recibirlos en formato reutilizable.</div>
+        <div><b>Bloqueo</b>Suspender temporalmente su uso.</div>
+      </div>
+      <p>Escríbenos a <a href="mailto:chilecker@gmail.com?subject=Ejercicio%20de%20derechos%20-%20datos%20personales">chilecker@gmail.com</a> indicando el derecho que quieres ejercer. Respondemos en un máximo de <strong>30 días corridos</strong>. Si no quedas conforme, puedes reclamar ante la <strong>Agencia de Protección de Datos Personales</strong>.</p>
+
+      <h3>9. Seguridad y confidencialidad</h3>
+      <p>Solo SATI accede a tus datos, en cuentas protegidas con contraseña robusta y verificación en dos pasos. La información técnica que conozcamos de tu empresa durante un servicio (redes, accesos, configuraciones) se trata como confidencial.</p>
+
+      <h3>10. Cambios</h3>
+      <p>Si cambiamos esta política, actualizaremos esta sección y su fecha.</p>
+
+      <p class="meta">Última actualización: 6 de octubre de 2026</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============================================================ MÚSICA -->
 <div id="yt-host"><div id="yt-player"></div></div>
 
@@ -1587,7 +1643,8 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
       <svg class="brand-mark" viewBox="0 0 400 400"><use href="#sati-mark"/></svg>
       <span>SATI — Servicios Asesorías Tecnología Informática</span>
     </div>
-    <span class="footer-copy">© 2026 SATI · Providencia, Santiago, Chile</span>
+    <nav class="footer-links" aria-label="Legal"><a href="#privacidad">Política de privacidad</a><a href="mailto:chilecker@gmail.com?subject=Ejercicio%20de%20derechos%20-%20datos%20personales">Ejercer mis derechos</a></nav>
+    <span class="footer-copy">© 2026 SATI EIRL · RUT 76.525.198-2 · Providencia, Santiago, Chile</span>
   </div>
 </footer>
 
@@ -2007,7 +2064,7 @@ markers (services aren't a sequence), a mono stat strip, plain contact block.
   frame.allow = 'autoplay; encrypted-media';
   frame.setAttribute('frameborder','0');
   frame.title = 'Música de fondo en vivo';
-  frame.src = 'https://www.youtube.com/embed/' + VIDEO_ID + '?' + params.join('&');
+  frame.src = 'https://www.youtube-nocookie.com/embed/' + VIDEO_ID + '?' + params.join('&');
   host.appendChild(frame);
 
   var connected = false;   // el reproductor respondió: el embed funciona
