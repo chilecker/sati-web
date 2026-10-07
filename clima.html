@@ -13,6 +13,7 @@
 
 
 
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -104,6 +105,7 @@ footer a{color:var(--fg)}
   .legend .bar{width:70px}
   .timebar{padding:8px 10px}
   .probe{font-size:11px;padding:4px 8px;top:auto;bottom:24px}
+  .probe.idle{display:none}
   .swipe{display:block;margin:0;font-size:12px;color:var(--muted)}
   .side{flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;margin-inline:-16px;padding-inline:16px;scroll-padding-inline:16px;scrollbar-width:none;align-items:stretch}
   .side::-webkit-scrollbar{display:none}
@@ -151,7 +153,7 @@ footer a{color:var(--fg)}
       <div class="stage" id="stage">
         <canvas id="base"></canvas>
         <canvas id="parts"></canvas>
-        <div class="probe" id="probe">Toca el mapa para consultar un punto</div>
+        <div class="probe idle" id="probe">Toca el mapa para consultar un punto</div>
       </div>
       <div class="timebar">
         <button class="play" id="play" aria-label="Reproducir pronóstico">
@@ -380,7 +382,7 @@ range.addEventListener("input",()=>setStep(+range.value));
 let timer=null; const playBtn=document.getElementById("play"), ico=document.getElementById("playico");
 playBtn.addEventListener("click",()=>{ if(timer){clearInterval(timer);timer=null;ico.innerHTML='<path d="M3 1.5v11l9-5.5z"/>';playBtn.setAttribute("aria-label","Reproducir pronóstico");return;}
   ico.innerHTML='<path d="M3 1.5h3v11H3zM8 1.5h3v11H8z"/>'; playBtn.setAttribute("aria-label","Pausar"); timer=setInterval(()=>setStep((step+1)%25),1300);});
-stage.addEventListener("click",e=>{const r=stage.getBoundingClientRect(); probe=unproj(e.clientX-r.left,e.clientY-r.top); drawBase(); updateProbe();});
+stage.addEventListener("click",e=>{document.getElementById("probe").classList.remove("idle"); const r=stage.getBoundingClientRect(); probe=unproj(e.clientX-r.left,e.clientY-r.top); drawBase(); updateProbe();});
 document.getElementById("t-from").textContent=fmt(0).split(" · ")[0];
 document.getElementById("t-to").textContent=fmt(24).split(" · ")[0];
 

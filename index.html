@@ -2308,11 +2308,10 @@
   @media (max-width:700px){
     section{padding-block:48px !important}
     .hero{min-height:0 !important}
+    .hero-inner{padding-left:20px !important;padding-right:20px !important}
     .section-head{margin-bottom:20px !important}
     .status-strip{display:grid !important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px !important}
     .status-strip > *{min-width:0}
-    .stat-stack{flex-direction:row !important;gap:8px !important}
-    .stat-stack .stat{flex:1 1 0;min-width:0;padding:12px !important}
     /* carruseles horizontales */
     .m-car{display:flex !important;grid-template-columns:none !important;flex-direction:row !important;flex-wrap:nowrap !important;
       overflow-x:auto;scroll-snap-type:x mandatory;background:none !important;border:0 !important;border-radius:0 !important;box-shadow:none !important;gap:12px !important;margin-inline:-20px;padding:2px 20px 10px;scroll-padding-inline:20px;scrollbar-width:none;align-items:stretch}
@@ -2322,9 +2321,8 @@
     .m-hint{display:block;font:500 12px/1 var(--font-mono,monospace);color:var(--muted,#6f9a83);margin:0 0 8px;letter-spacing:.04em}
     /* logos en grilla compacta */
     .clientes-grid{display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px !important}
-    #tecnologias .clientes-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
     .cliente-logo{height:auto !important;min-height:0 !important;aspect-ratio:1;padding:10px !important;width:auto !important}
-    .cliente-logo img{max-height:100%;object-fit:contain}
+    .cliente-logo img{width:88% !important;max-width:88% !important;height:auto !important;max-height:88%;object-fit:contain}
     .rights{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
     .ia-demo iframe{height:440px !important}
     /* bloques plegables */
@@ -2333,7 +2331,7 @@
     .m-fold.open{max-height:none}
     .m-fold.open::after{display:none}
     .m-more{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font:600 14px var(--font-body,system-ui);color:var(--sky,#4ade80);
-      background:transparent;border:1px solid var(--line,rgba(74,222,128,.3));border-radius:999px;padding:9px 16px;cursor:pointer}
+      background:transparent;border:1px solid var(--line,rgba(74,222,128,.3));border-radius:999px;padding:9px 16px;cursor:pointer;margin-bottom:28px}
   }
 </style>
 <script>
