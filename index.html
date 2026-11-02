@@ -1739,7 +1739,7 @@
 <div class="player" id="player" hidden>
   <button id="player-toggle" type="button" aria-label="Activar sonido">
     <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
-    <svg id="icon-pause" viewBox="0 0 24 24" fill="currentColor" hidden><path d="M7 5h3.5v14H7zm6.5 0H17v14h-3.5z"/></svg>
+    <svg id="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M7 5h3.5v14H7zm6.5 0H17v14h-3.5z"/></svg>
   </button>
   <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <div class="player-meta">
@@ -2180,9 +2180,8 @@
 <script>
 /* ---------- música de fondo (stream en vivo de YouTube) ---------- */
 (function(){
-  var VIDEO_ID  = 'sjSnCKudqj0';
-  var CHANNEL_ID = 'UCuES77aLmrE7ApbwaUmpvaA'; // Cyberpunk Coding Music (TACTICAL BREACH)
-  var WATCH_URL = 'https://www.youtube.com/channel/' + CHANNEL_ID + '/live';
+    var VIDEO_ID  = 'UIhcsAQWodw'; // TACTICAL BREACH | Dark Cyberpunk Downtempo (video completo, no transmisión en vivo)
+  var WATCH_URL = 'https://www.youtube.com/watch?v=' + VIDEO_ID;
 
   var host   = document.getElementById('yt-player');
   var pill   = document.getElementById('player');
@@ -2194,7 +2193,8 @@
   if(!host || !pill) return;
 
   // El parámetro origin sólo es válido sobre http/https. En file:// rompe el embed.
-  var params = ['autoplay=1','mute=1','enablejsapi=1','playsinline=1','controls=0','rel=0','iv_load_policy=3'];
+  var params = ['autoplay=1','mute=1','enablejsapi=1','playsinline=1','controls=0','rel=0','iv_load_policy=3',
+                'loop=1','playlist=' + VIDEO_ID]; // repetir el video al terminar
   if(location.protocol === 'http:' || location.protocol === 'https:'){
     params.push('origin=' + encodeURIComponent(location.origin));
   }
@@ -2204,9 +2204,7 @@
   frame.allow = 'autoplay; encrypted-media';
   frame.setAttribute('frameborder','0');
   frame.title = 'Música de fondo en vivo';
-  // Se usa la transmisión EN VIVO ACTUAL del canal (no un video fijo): cuando el canal
-  // reinicia su radio cambia el ID del video, pero este enlace siempre apunta al vivo.
-  frame.src = 'https://www.youtube.com/embed/live_stream?channel=' + CHANNEL_ID + '&' + params.join('&');
+  frame.src = 'https://www.youtube-nocookie.com/embed/' + VIDEO_ID + '?' + params.join('&');
   host.appendChild(frame);
 
   var connected = false;   // el reproductor respondió: el embed funciona
@@ -2225,7 +2223,7 @@
     if(fallback){
       pill.classList.remove('playing');
       pill.classList.add('blocked');
-      iPlay.hidden = false; iPause.hidden = true;
+      iPlay.style.display = (false) ? 'none' : ''; iPause.style.display = (true) ? 'none' : '';
       label.textContent = 'Radio';
       title.textContent = 'Escuchar en YouTube';
       toggle.setAttribute('aria-label','Escuchar la radio en YouTube');
@@ -2233,13 +2231,13 @@
     }
     pill.classList.toggle('playing', playing && !muted);
     pill.classList.toggle('blocked', playing && muted);
-    iPlay.hidden  = playing && !muted;
-    iPause.hidden = !(playing && !muted);
+    iPlay.style.display = (playing && !muted) ? 'none' : '';
+    iPause.style.display = (!(playing && !muted)) ? 'none' : '';
     if(playing && muted){
       title.textContent = 'Activar sonido';
       toggle.setAttribute('aria-label','Activar sonido');
     } else if(playing){
-      title.textContent = 'Cyberpunk Radio';
+      title.textContent = 'Tactical Breach';
       toggle.setAttribute('aria-label','Pausar música');
     } else {
       title.textContent = 'Reproducir música';
@@ -2265,6 +2263,7 @@
 
     if(!connected){
       connected = true;
+      if(wantSound) setTimeout(unmute, 300);
       clearInterval(handshake);
       playing = true;
       show();
@@ -2273,7 +2272,7 @@
     if(data.info && typeof data.info.playerState === 'number'){
       if(data.info.playerState === 1) playing = true;
       if(data.info.playerState === 2) playing = false;
-      if(typeof data.info.muted === 'boolean') muted = data.info.muted;
+      if(typeof data.info.muted === 'boolean'){ muted = data.info.muted; if(!muted) soundConfirmed(); }
       paint();
     }
   });
@@ -2288,22 +2287,26 @@
     show();
   }, 5000);
 
+  var wantSound = false;   // el visitante ya hizo clic: queremos audio
   function unmute(){
-    if(!connected || !muted) return;
+    if(!muted) return;
+    wantSound = true;
+    if(!connected) return;          // se aplicará apenas YouTube responda
     cmd('unMute'); cmd('setVolume', [35]); cmd('playVideo');
-    muted = false; playing = true; paint();
   }
 
-  // Intento de encender el sonido en la primera interacción real del visitante.
-  function firstGesture(){
-    unmute();
+  // Cada clic/tecla/toque reintenta encender el sonido hasta que YouTube
+  // confirme que ya no está en silencio (antes solo se intentaba una vez,
+  // y si el reproductor aún no estaba listo, la música quedaba muda).
+  function gesture(){ if(muted) unmute(); }
+  ['pointerdown','keydown','touchstart'].forEach(function(ev){
+    document.addEventListener(ev, gesture, {passive:true});
+  });
+  function soundConfirmed(){
     ['pointerdown','keydown','touchstart'].forEach(function(ev){
-      document.removeEventListener(ev, firstGesture);
+      document.removeEventListener(ev, gesture);
     });
   }
-  ['pointerdown','keydown','touchstart'].forEach(function(ev){
-    document.addEventListener(ev, firstGesture, {passive:true});
-  });
 
   toggle.addEventListener('click', function(e){
     e.stopPropagation();
