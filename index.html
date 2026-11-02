@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SATI · Infraestructura TI, redes y cámaras en Santiago</title>
 
@@ -1733,17 +1734,17 @@
 </section>
 
 <!-- ============================================================ MÚSICA -->
-<div id="yt-host"><div id="yt-player"></div></div>
+<div class="player-mini" id="player-mini" hidden></div>
 
 <div class="player" id="player" hidden>
-  <button id="player-toggle" type="button" aria-label="Activar sonido">
+  <button id="player-toggle" type="button" aria-label="Reproducir música">
     <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
     <svg id="icon-pause" viewBox="0 0 24 24" fill="currentColor" hidden><path d="M7 5h3.5v14H7zm6.5 0H17v14h-3.5z"/></svg>
   </button>
   <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <div class="player-meta">
-    <span class="player-label">En vivo</span>
-    <span class="player-title" id="player-title">Música de fondo</span>
+    <span class="player-label">Radio</span>
+    <span class="player-title" id="player-title">Reproducir música</span>
   </div>
 </div>
 
@@ -2176,139 +2177,83 @@
 })();
 </script>
 
+<style>
+  .player-mini{position:fixed;right:20px;bottom:78px;z-index:60;width:256px;aspect-ratio:16/9;
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#000;
+    box-shadow:0 14px 34px -10px rgba(0,0,0,0.8);}
+  .player-mini iframe{display:block;width:100%;height:100%;border:0;}
+  @media (max-width:640px){.player-mini{right:12px;bottom:68px;width:200px;}}
+</style>
 <script>
-/* ---------- música de fondo (stream en vivo de YouTube) ---------- */
+/* ---------- música de fondo (YouTube) ---------- */
+/* El video se carga recién cuando el visitante toca el botón, en un mini
+   reproductor visible: así el navegador permite el sonido y YouTube no lo
+   bloquea por estar oculto. */
 (function(){
-  var VIDEO_ID  = 'sjSnCKudqj0';
-  var WATCH_URL = 'https://www.youtube.com/watch?v=' + VIDEO_ID;
+  var VIDEO_IDS = ['UIhcsAQWodw','sjSnCKudqj0','j68NK_HaSZE'];
+  var idx = 0;
 
-  var host   = document.getElementById('yt-player');
   var pill   = document.getElementById('player');
+  var mini   = document.getElementById('player-mini');
   var toggle = document.getElementById('player-toggle');
   var title  = document.getElementById('player-title');
   var label  = pill ? pill.querySelector('.player-label') : null;
   var iPlay  = document.getElementById('icon-play');
   var iPause = document.getElementById('icon-pause');
-  if(!host || !pill) return;
+  if(!pill || !mini || !toggle) return;
 
-  // El parámetro origin sólo es válido sobre http/https. En file:// rompe el embed.
-  var params = ['autoplay=1','mute=1','enablejsapi=1','playsinline=1','controls=0','rel=0','iv_load_policy=3'];
-  if(location.protocol === 'http:' || location.protocol === 'https:'){
-    params.push('origin=' + encodeURIComponent(location.origin));
-  }
-
-  var frame = document.createElement('iframe');
-  frame.width = '320'; frame.height = '180';
-  frame.allow = 'autoplay; encrypted-media';
-  frame.setAttribute('frameborder','0');
-  frame.title = 'Música de fondo en vivo';
-  frame.src = 'https://www.youtube-nocookie.com/embed/' + VIDEO_ID + '?' + params.join('&');
-  host.appendChild(frame);
-
-  var connected = false;   // el reproductor respondió: el embed funciona
-  var fallback  = false;   // el embed está bloqueado; ofrecemos abrir YouTube
-  var muted     = true;
-  var playing   = false;
-
-  function post(payload){
-    if(frame.contentWindow) frame.contentWindow.postMessage(JSON.stringify(payload), '*');
-  }
-  function cmd(func, args){
-    post({event:'command', func:func, args:args || []});
-  }
+  var on = false, frame = null;
 
   function paint(){
-    if(fallback){
-      pill.classList.remove('playing');
-      pill.classList.add('blocked');
-      iPlay.hidden = false; iPause.hidden = true;
-      label.textContent = 'Radio';
-      title.textContent = 'Escuchar en YouTube';
-      toggle.setAttribute('aria-label','Escuchar la radio en YouTube');
-      return;
-    }
-    pill.classList.toggle('playing', playing && !muted);
-    pill.classList.toggle('blocked', playing && muted);
-    iPlay.hidden  = playing && !muted;
-    iPause.hidden = !(playing && !muted);
-    if(playing && muted){
-      title.textContent = 'Activar sonido';
-      toggle.setAttribute('aria-label','Activar sonido');
-    } else if(playing){
-      title.textContent = 'Cyberpunk Radio';
-      toggle.setAttribute('aria-label','Pausar música');
-    } else {
-      title.textContent = 'Reproducir música';
-      toggle.setAttribute('aria-label','Reproducir música');
-    }
+    pill.classList.toggle('playing', on);
+    pill.classList.toggle('blocked', !on);
+    iPlay.style.display = on ? 'none' : ''; iPause.style.display = on ? '' : 'none'; iPause.removeAttribute('hidden');
+    label.textContent = on ? 'Sonando' : 'Radio';
+    title.textContent = on ? 'Detener música' : 'Reproducir música';
+    toggle.setAttribute('aria-label', on ? 'Detener música' : 'Reproducir música');
   }
 
-  function show(){
-    pill.hidden = false;
-    paint();
-    requestAnimationFrame(function(){ pill.classList.add('ready'); });
+  function src(id){
+    var p = ['autoplay=1','playsinline=1','rel=0','iv_load_policy=3','loop=1','playlist=' + id,'enablejsapi=1'];
+    if(location.protocol === 'http:' || location.protocol === 'https:') p.push('origin=' + encodeURIComponent(location.origin));
+    return 'https://www.youtube.com/embed/' + id + '?' + p.join('&');
   }
 
-  // El reproductor de YouTube sólo acepta comandos después de este saludo.
-  var handshake = setInterval(function(){ post({event:'listening', id:1, channel:'widget'}); }, 400);
-  frame.addEventListener('load', function(){ post({event:'listening', id:1, channel:'widget'}); });
-
-  window.addEventListener('message', function(e){
-    if(e.origin !== 'https://www.youtube.com' && e.origin !== 'https://www.youtube-nocookie.com') return;
-    var data;
-    try { data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch(err){ return; }
-    if(!data) return;
-
-    if(!connected){
-      connected = true;
-      clearInterval(handshake);
-      playing = true;
-      show();
-    }
-    // 1 = reproduciendo, 2 = en pausa
-    if(data.info && typeof data.info.playerState === 'number'){
-      if(data.info.playerState === 1) playing = true;
-      if(data.info.playerState === 2) playing = false;
-      if(typeof data.info.muted === 'boolean') muted = data.info.muted;
-      paint();
-    }
-  });
-
-  // Si el embed está bloqueado (por ejemplo por la política de seguridad de una
-  // vista previa), ofrecemos abrir la radio en YouTube en vez de un control muerto.
-  setTimeout(function(){
-    if(connected) return;
-    clearInterval(handshake);
-    fallback = true;
-    host.remove();
-    show();
-  }, 5000);
-
-  function unmute(){
-    if(!connected || !muted) return;
-    cmd('unMute'); cmd('setVolume', [35]); cmd('playVideo');
-    muted = false; playing = true; paint();
-  }
-
-  // Intento de encender el sonido en la primera interacción real del visitante.
-  function firstGesture(){
-    unmute();
-    ['pointerdown','keydown','touchstart'].forEach(function(ev){
-      document.removeEventListener(ev, firstGesture);
+  function start(){
+    mini.innerHTML = '';
+    frame = document.createElement('iframe');
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture';
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    frame.title = 'Música de fondo';
+    frame.src = src(VIDEO_IDS[idx]);
+    frame.addEventListener('load', function(){
+      if(frame && frame.contentWindow) frame.contentWindow.postMessage(JSON.stringify({event:'listening', id:1, channel:'widget'}), '*');
     });
+    mini.appendChild(frame);
+    mini.hidden = false;
+    on = true; paint();
   }
-  ['pointerdown','keydown','touchstart'].forEach(function(ev){
-    document.addEventListener(ev, firstGesture, {passive:true});
+
+  function stop(){
+    mini.innerHTML = ''; mini.hidden = true; frame = null;
+    on = false; paint();
+  }
+
+  // Si YouTube avisa que el video no se puede insertar, pasa al siguiente.
+  window.addEventListener('message', function(e){
+    if(!frame || e.source !== frame.contentWindow) return;
+    var d; try { d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch(err){ return; }
+    if(d && d.event === 'onError' && idx < VIDEO_IDS.length - 1){ idx++; start(); }
   });
 
   toggle.addEventListener('click', function(e){
     e.stopPropagation();
-    if(fallback){ window.open(WATCH_URL, '_blank', 'noopener'); return; }
-    if(muted){ unmute(); return; }
-    if(playing){ cmd('pauseVideo'); playing = false; }
-    else { cmd('playVideo'); playing = true; }
-    paint();
+    if(on) stop(); else start();
   });
+
+  pill.hidden = false;
+  paint();
+  requestAnimationFrame(function(){ pill.classList.add('ready'); });
 })();
 </script>
 <!-- ============================================================ MÓVIL: versión compacta (solo pantallas ≤700px) -->
