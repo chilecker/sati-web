@@ -2272,7 +2272,9 @@
     if(data.info && typeof data.info.playerState === 'number'){
       if(data.info.playerState === 1) playing = true;
       if(data.info.playerState === 2) playing = false;
-      if(typeof data.info.muted === 'boolean'){ muted = data.info.muted; if(!muted) soundConfirmed(); }
+      // Antes del clic se usa lo que informa YouTube; después, manda el estado local
+      // (YouTube a veces reporta 'muted' atrasado y eso bloqueaba el botón de pausa).
+      if(!wantSound && typeof data.info.muted === 'boolean') muted = data.info.muted;
       paint();
     }
   });
@@ -2293,12 +2295,16 @@
     wantSound = true;
     if(!connected) return;          // se aplicará apenas YouTube responda
     cmd('unMute'); cmd('setVolume', [35]); cmd('playVideo');
+    muted = false; playing = true; paint(); soundConfirmed();
   }
 
   // Cada clic/tecla/toque reintenta encender el sonido hasta que YouTube
   // confirme que ya no está en silencio (antes solo se intentaba una vez,
   // y si el reproductor aún no estaba listo, la música quedaba muda).
-  function gesture(){ if(muted) unmute(); }
+  function gesture(e){
+    if(e && e.target && toggle.contains(e.target)) return; // la píldora se maneja con su propio clic
+    if(muted) unmute();
+  }
   ['pointerdown','keydown','touchstart'].forEach(function(ev){
     document.addEventListener(ev, gesture, {passive:true});
   });
