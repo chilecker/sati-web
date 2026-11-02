@@ -1734,8 +1734,8 @@
 </section>
 
 <!-- ============================================================ MÚSICA -->
-<div class="player-mini" id="player-mini" hidden></div>
 
+<div class="player-mini ghost" id="player-mini" hidden></div>
 <div class="player" id="player" hidden>
   <button id="player-toggle" type="button" aria-label="Reproducir música">
     <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
@@ -2178,19 +2178,22 @@
 </script>
 
 <style>
-  .player-mini{position:fixed;right:20px;bottom:78px;z-index:60;width:256px;aspect-ratio:16/9;
+  /* Reproductor de YouTube invisible pero con tamaño real (YouTube exige
+     al menos 200x200 px y bloquea los reproductores diminutos). */
+  .player-mini{position:fixed;right:20px;bottom:78px;z-index:59;width:320px;height:200px;
     border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#000;
-    box-shadow:0 14px 34px -10px rgba(0,0,0,0.8);}
+    box-shadow:0 14px 34px -10px rgba(0,0,0,0.8);transition:opacity .3s ease;}
   .player-mini iframe{display:block;width:100%;height:100%;border:0;}
-  @media (max-width:640px){.player-mini{right:12px;bottom:68px;width:200px;}}
+  .player-mini.ghost{opacity:0;pointer-events:none;}
+  @media (max-width:640px){.player-mini{right:12px;bottom:68px;width:240px;height:200px;}}
 </style>
 <script>
-/* ---------- música de fondo (YouTube) ---------- */
-/* El video se carga recién cuando el visitante toca el botón, en un mini
-   reproductor visible: así el navegador permite el sonido y YouTube no lo
-   bloquea por estar oculto. */
+/* ---------- música de fondo: TACTICAL BREACH (YouTube) ---------- */
+/* Suena con el primer clic/toque en cualquier parte. El video nunca se ve:
+   solo si el navegador se niega a reproducir solo (pasa en algunos celulares)
+   aparece la ventana para tocar play una vez. */
 (function(){
-  var VIDEO_IDS = ['UIhcsAQWodw','sjSnCKudqj0','j68NK_HaSZE'];
+  var VIDEO_IDS = ['sjSnCKudqj0','j68NK_HaSZE'];
   var idx = 0;
 
   var pill   = document.getElementById('player');
@@ -2202,49 +2205,66 @@
   var iPause = document.getElementById('icon-pause');
   if(!pill || !mini || !toggle) return;
 
-  var on = false, frame = null;
+  var on = false, sounding = false, frame = null, handshake = null, rescue = null;
+  iPause.removeAttribute('hidden');
 
   function paint(){
-    pill.classList.toggle('playing', on);
-    pill.classList.toggle('blocked', !on);
-    iPlay.style.display = on ? 'none' : ''; iPause.style.display = on ? '' : 'none'; iPause.removeAttribute('hidden');
-    label.textContent = on ? 'Sonando' : 'Radio';
-    title.textContent = on ? 'Detener música' : 'Reproducir música';
+    pill.classList.toggle('playing', on && sounding);
+    pill.classList.toggle('blocked', !(on && sounding));
+    iPlay.style.display  = on ? 'none' : '';
+    iPause.style.display = on ? '' : 'none';
+    label.textContent = on ? (sounding ? 'Sonando' : 'Conectando…') : 'Radio';
+    title.textContent = on ? 'Tactical Breach' : 'Reproducir música';
     toggle.setAttribute('aria-label', on ? 'Detener música' : 'Reproducir música');
   }
-
+  function post(o){ if(frame && frame.contentWindow) frame.contentWindow.postMessage(JSON.stringify(o), '*'); }
   function src(id){
-    var p = ['autoplay=1','playsinline=1','rel=0','iv_load_policy=3','loop=1','playlist=' + id,'enablejsapi=1'];
+    var p = ['autoplay=1','playsinline=1','controls=1','rel=0','iv_load_policy=3','enablejsapi=1'];
     if(location.protocol === 'http:' || location.protocol === 'https:') p.push('origin=' + encodeURIComponent(location.origin));
     return 'https://www.youtube.com/embed/' + id + '?' + p.join('&');
   }
 
   function start(){
     mini.innerHTML = '';
+    sounding = false;
+    mini.classList.add('ghost');
     frame = document.createElement('iframe');
-    frame.allow = 'autoplay; encrypted-media; picture-in-picture';
+    frame.allow = 'autoplay; encrypted-media';
     frame.referrerPolicy = 'strict-origin-when-cross-origin';
     frame.title = 'Música de fondo';
     frame.src = src(VIDEO_IDS[idx]);
-    frame.addEventListener('load', function(){
-      if(frame && frame.contentWindow) frame.contentWindow.postMessage(JSON.stringify({event:'listening', id:1, channel:'widget'}), '*');
-    });
     mini.appendChild(frame);
     mini.hidden = false;
+    clearInterval(handshake);
+    handshake = setInterval(function(){ post({event:'listening', id:1, channel:'widget'}); }, 500);
+    // Si en 6 s no arrancó solo, mostrar la ventana para que el visitante toque play.
+    clearTimeout(rescue);
+    rescue = setTimeout(function(){ if(on && !sounding) mini.classList.remove('ghost'); }, 6000);
     on = true; paint();
   }
-
   function stop(){
+    clearInterval(handshake); clearTimeout(rescue);
     mini.innerHTML = ''; mini.hidden = true; frame = null;
-    on = false; paint();
+    on = false; sounding = false; paint();
   }
 
-  // Si YouTube avisa que el video no se puede insertar, pasa al siguiente.
   window.addEventListener('message', function(e){
     if(!frame || e.source !== frame.contentWindow) return;
     var d; try { d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch(err){ return; }
-    if(d && d.event === 'onError' && idx < VIDEO_IDS.length - 1){ idx++; start(); }
+    if(!d) return;
+    clearInterval(handshake);
+    if(d.event === 'onError'){ if(idx < VIDEO_IDS.length - 1){ idx++; start(); } return; }
+    var st = d.info && typeof d.info === 'object' ? d.info.playerState : undefined;
+    if(st === 1){ sounding = true; clearTimeout(rescue); mini.classList.add('ghost'); paint(); }
+    else if(st === 2){ sounding = false; paint(); }
   });
+
+  function firstGesture(e){
+    ['pointerdown','keydown'].forEach(function(ev){ document.removeEventListener(ev, firstGesture, true); });
+    if(e && e.target && toggle.contains(e.target)) return;
+    if(!on) start();
+  }
+  ['pointerdown','keydown'].forEach(function(ev){ document.addEventListener(ev, firstGesture, true); });
 
   toggle.addEventListener('click', function(e){
     e.stopPropagation();
